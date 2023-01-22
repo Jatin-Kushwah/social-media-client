@@ -1,0 +1,52 @@
+.Post {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 16px;
+
+    .heading {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        height: 60px;
+        padding: 20px;
+        cursor: pointer;
+    }
+
+    .content {
+        height: 450px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .likes {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        .icon {
+            font-size: 1.5rem;
+        }
+
+        .liked {
+            color: #ff5775;
+        }
+    }
+
+    .caption {
+        margin-top: 10px;
+    }
+
+    .time-ago {
+        margin-top: 10px;
+        color: #aaa;
+    }
+}
