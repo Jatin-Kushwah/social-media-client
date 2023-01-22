@@ -31,11 +31,17 @@ function Post({ post }) {
                 <img src={post?.image?.url} alt="Post" />
             </div>
             <div className="footer">
-                <div className="likes" onClick={handlePostLikes}>
+                <div className="likes">
                     {post.isLiked ? (
-                        <AiFillHeart className="icon liked" />
+                        <AiFillHeart
+                            className="icon liked"
+                            onClick={handlePostLikes}
+                        />
                     ) : (
-                        <AiOutlineHeart className="icon" />
+                        <AiOutlineHeart
+                            className="icon"
+                            onClick={handlePostLikes}
+                        />
                     )}
                     <h4>{`${post.likesCount} Likes`}</h4>
                 </div>

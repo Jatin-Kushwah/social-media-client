@@ -34,10 +34,25 @@
 
         .icon {
             font-size: 1.5rem;
+            animation: like 0.25s;
         }
 
         .liked {
-            color: #ff5775;
+            animation: like 0.25s;
+            fill: #ed4956;
+            stroke: #ed4956;
+        }
+
+        @keyframes like {
+            0% {
+                transform: scale(1);
+            }
+            90% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
     }
 
