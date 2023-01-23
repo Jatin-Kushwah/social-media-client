@@ -1,16 +1,18 @@
 .Feed {
-    margin-top: 70px;
-    height: 90vh;
+    height: 100vh;
+    width: 100%;
+    margin-inline: auto;
+    overflow: hidden;
+    max-width: 853px;
 
     .container {
         display: flex;
         gap: 20px;
-        overflow: hidden;
         height: 100%;
+        overflow-y: auto;
 
         .left-part {
             flex: 2;
-            overflow-y: auto;
         }
 
         .right-part {

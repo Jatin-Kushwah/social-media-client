@@ -3,6 +3,7 @@ import Navbar from "../../Components/navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getMyInfo } from "../../redux/slices/appConfigSlice";
+import "./Home.scss";
 
 function Home() {
     const dispatch = useDispatch();
@@ -12,12 +13,12 @@ function Home() {
     }, [dispatch]);
 
     return (
-        <>
+        <div className="Home">
             <Navbar />
-            <div className="outlet" style={{ marginTop: "60px" }}>
+            <div className="outlet" style={{ width: "100%" }}>
                 <Outlet />
             </div>
-        </>
+        </div>
     );
 }
 
