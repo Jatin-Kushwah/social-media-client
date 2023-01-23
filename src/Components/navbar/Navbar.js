@@ -1,23 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { MdOutlineLogout } from "react-icons/md";
 import Avatar from "../avatar/Avatar";
 import "./Navbar.scss";
 import { useSelector } from "react-redux";
-import { KEY_ACCESS_TOKEN, removeItem } from "../../Utils/localStorageManager";
-import { axiosClient } from "../../Utils/axiosClient";
+import { useState } from "react";
+import DropDown from "../dropdown/DropDown";
 
 function Navbar() {
     const navigate = useNavigate();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
 
-    const handleLogout = async () => {
-        try {
-            await axiosClient.post("/auth/logout");
-            removeItem(KEY_ACCESS_TOKEN);
-            navigate("/login");
-        } catch (err) {
-            console.log(err);
-        }
+    const handleMoreClick = () => {
+        setIsDropdownOpen(!isDropdownOpen);
     };
 
     return (
@@ -283,17 +277,77 @@ function Navbar() {
                         </li>
                     </ul>
                 </div>
-                {/* <div className="right-side">
+
+                <div className="more">
                     <div
-                        className="profile hover-link"
-                        onClick={() => navigate(`/profile/${myProfile?._id}`)}
+                        className={`nav-link ${isDropdownOpen ? "open" : ""}`}
+                        onClick={handleMoreClick}
                     >
-                        <Avatar src={myProfile?.avatar?.url} />
+                        {isDropdownOpen ? (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-label="Settings"
+                                className="_ab6-"
+                                color="#262626"
+                                fill="#262626"
+                                height="24"
+                                role="img"
+                                viewBox="0 0 24 24"
+                                width="24"
+                            >
+                                <path d="M3.5 6.5h17a1.5 1.5 0 0 0 0-3h-17a1.5 1.5 0 0 0 0 3Zm17 4h-17a1.5 1.5 0 0 0 0 3h17a1.5 1.5 0 0 0 0-3Zm0 7h-17a1.5 1.5 0 0 0 0 3h17a1.5 1.5 0 0 0 0-3Z" />
+                            </svg>
+                        ) : (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-label="Settings"
+                                className="_ab6-"
+                                color="#262626"
+                                fill="#262626"
+                                height="24"
+                                role="img"
+                                viewBox="0 0 24 24"
+                                width="24"
+                            >
+                                <line
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    x1="3"
+                                    x2="21"
+                                    y1="4"
+                                    y2="4"
+                                />
+                                <line
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    x1="3"
+                                    x2="21"
+                                    y1="12"
+                                    y2="12"
+                                />
+                                <line
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    x1="3"
+                                    x2="21"
+                                    y1="20"
+                                    y2="20"
+                                />
+                            </svg>
+                        )}
+                        More
                     </div>
-                    <div className="logout hover-link" onClick={handleLogout}>
-                        <MdOutlineLogout />
-                    </div>
-                </div> */}
+                    {isDropdownOpen && <DropDown />}
+                </div>
             </div>
         </div>
     );
