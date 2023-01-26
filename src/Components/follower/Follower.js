@@ -32,16 +32,14 @@ function Follower({ user }) {
                 onClick={() => navigate(`/profile/${user._id}`)}
             >
                 <Avatar src={user?.avatar?.url} />
-                <h4 className="name">{user?.name}</h4>
+                <h3 className="name">{user?.name}</h3>
             </div>
 
             <h5
                 onClick={handleFollowUser}
-                className={
-                    isFollowing ? "hover-link follow-link" : "btn-primary"
-                }
+                className={isFollowing ? "unfollow" : "follow"}
             >
-                {isFollowing ? "Unfollow" : "Follow"}
+                {isFollowing ? "Following" : "Follow"}
             </h5>
         </div>
     );

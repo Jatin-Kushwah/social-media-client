@@ -6,24 +6,76 @@
     max-width: 853px;
 
     .container {
-        display: flex;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: 472px 351px;
+        justify-content: space-between;
         height: 100%;
         overflow-y: auto;
 
         .left-part {
-            flex: 2;
+            margin-top: 46px;
         }
 
         .right-part {
-            flex: 1;
+            padding-left: 30px;
+            margin-top: 46px;
 
-            .title {
-                margin-bottom: 12px;
+            .my-info {
+                margin-bottom: 16px;
+
+                .my-profile {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .avatar-name {
+                        display: flex;
+                        align-items: center;
+                        gap: 18px;
+
+                        .avatar {
+                            width: 56px;
+                            height: 56px;
+                            border-radius: 50%;
+                            cursor: pointer;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                                object-fit: cover;
+                            }
+                        }
+
+                        .name {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .switch {
+                        color: var(--accent-color);
+                        font-size: 12px;
+                        cursor: pointer;
+                    }
+
+                    .switch:hover {
+                        color: #1f567b;
+                    }
+                }
             }
 
-            .suggestions {
-                margin-top: 30px;
+            .title {
+                margin-bottom: 6px;
+                color: rgb(141, 141, 141);
+            }
+
+            .suggestions-container {
+                height: 279px;
+                overflow: hidden;
+
+                .suggestions {
+                    padding-left: 4px;
+                }
             }
         }
     }

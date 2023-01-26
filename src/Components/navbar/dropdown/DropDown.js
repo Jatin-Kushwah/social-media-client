@@ -1,10 +1,13 @@
 import React from "react";
-import { KEY_ACCESS_TOKEN, removeItem } from "../../Utils/localStorageManager";
-import { axiosClient } from "../../Utils/axiosClient";
+import {
+    KEY_ACCESS_TOKEN,
+    removeItem,
+} from "../../../Utils/localStorageManager";
+import { axiosClient } from "../../../Utils/axiosClient";
 import { useNavigate } from "react-router-dom";
 import "./DropDown.scss";
 
-function DropDown() {
+function DropDown({ dropDownClose }) {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -19,6 +22,7 @@ function DropDown() {
 
     return (
         <div className="Dropdown">
+            <div className="blank" onClick={dropDownClose}></div>
             <ul>
                 <li onClick={() => navigate("/updateProfile")}>
                     Settings

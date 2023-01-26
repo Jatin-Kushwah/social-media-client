@@ -30,7 +30,6 @@ function CreatePost() {
                 caption,
                 postImg,
             });
-            console.log("post done", result);
             dispatch(
                 getUserProfile({
                     userId: myProfile?._id,

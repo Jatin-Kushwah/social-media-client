@@ -3,7 +3,7 @@ import Avatar from "../avatar/Avatar";
 import "./Navbar.scss";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import DropDown from "../dropdown/DropDown";
+import DropDown from "./dropdown/DropDown";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -346,7 +346,13 @@ function Navbar() {
                         )}
                         More
                     </div>
-                    {isDropdownOpen && <DropDown />}
+                    {isDropdownOpen && (
+                        <DropDown
+                            isDropdownOpen={isDropdownOpen}
+                            setIsDropdownOpen={setIsDropdownOpen}
+                            dropDownClose={() => setIsDropdownOpen(false)}
+                        />
+                    )}
                 </div>
             </div>
         </div>

@@ -1,67 +1,120 @@
 .Post {
-    border: 1px solid var(--border-color);
     border-radius: 4px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 
     .heading {
         display: flex;
         align-items: center;
-        gap: 20px;
-        height: 60px;
-        padding: 20px;
-        cursor: pointer;
+        justify-content: space-between;
+        padding-inline: 5px;
+
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            height: 58px;
+
+            .heading-name {
+                font-size: 14px;
+                font-weight: 600;
+                padding-left: 7px;
+                cursor: pointer;
+            }
+
+            .time-ago {
+                color: #aaa;
+            }
+        }
+
+        .right {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .right:hover {
+            color: #aaa;
+        }
     }
 
     .content {
-        height: 450px;
+        width: 470px;
+        height: 470px;
+        min-height: 470px;
+        max-height: 586px;
 
         img {
             width: 100%;
             height: 100%;
+            border-radius: 4px;
             object-fit: cover;
         }
     }
 
     .footer {
-        padding: 20px;
-    }
-
-    .likes {
+        padding-top: 11px;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         gap: 10px;
-        cursor: pointer;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 21px;
 
-        .icon {
-            font-size: 1.5rem;
-            animation: like 0.25s;
+        .likes-comments {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            .icon {
+                font-size: 28px;
+                animation: like 0.25s;
+                cursor: pointer;
+            }
+
+            .icon:hover {
+                color: #aaa;
+            }
+
+            .liked {
+                animation: like 0.25s;
+                fill: #ed4956;
+                stroke: #ed4956;
+            }
+
+            .comment {
+                display: flex;
+                cursor: pointer;
+            }
+
+            .comment:hover {
+                svg {
+                    color: #aaa;
+                }
+            }
+
+            .comment:hover {
+                color: #aaa;
+            }
+
+            @keyframes like {
+                0% {
+                    transform: scale(1);
+                }
+                90% {
+                    transform: scale(1.2);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
         }
 
-        .liked {
-            animation: like 0.25s;
-            fill: #ed4956;
-            stroke: #ed4956;
-        }
+        .caption-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
 
-        @keyframes like {
-            0% {
-                transform: scale(1);
-            }
-            90% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
+            .heading-name {
+                cursor: pointer;
             }
         }
-    }
-
-    .caption {
-        margin-top: 10px;
-    }
-
-    .time-ago {
-        margin-top: 10px;
-        color: #aaa;
     }
 }

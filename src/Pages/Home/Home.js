@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { getMyInfo } from "../../redux/slices/appConfigSlice";
 import "./Home.scss";
 
-function Home() {
+function Home({ isDropdownOpen, dropDownClose }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
