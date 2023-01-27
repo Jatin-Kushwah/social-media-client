@@ -3,7 +3,6 @@ import "./Profile.scss";
 import Post from "../post/Post.js";
 import { useNavigate, useParams } from "react-router-dom";
 import userImage from "../../assets/user.png";
-import CreatePost from "../createPost/CreatePost";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/slices/postSlice";
 import { followAndUnfollowUser } from "../../redux/slices/feedSlice";
@@ -44,7 +43,6 @@ function Profile() {
         <div className="Profile">
             <div className="container">
                 <div className="left-part">
-                    {isMyProfile && <CreatePost />}
                     {userProfile?.posts?.map((post) => (
                         <Post key={post._id} post={post} />
                     ))}

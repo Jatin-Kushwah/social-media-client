@@ -1,14 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import Avatar from "../avatar/Avatar";
+import { useLocation, useNavigate } from "react-router-dom";
+import userImage from "../../assets/user.png";
 import "./Navbar.scss";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import DropDown from "./dropdown/DropDown";
+import CreatePost from "../createPost/CreatePost";
 
 function Navbar() {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [openCreatePost, setOpenCreatePost] = useState(false);
     const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
+    const src = myProfile?.avatar?.url;
+
+    const location = useLocation();
+    const path = location.pathname;
 
     const handleMoreClick = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -44,19 +50,41 @@ function Navbar() {
                 <div className="nav-links-container">
                     <ul>
                         <li className="nav-link" onClick={() => navigate("/")}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-label="Home"
-                                className="_ab6-"
-                                color="#262626"
-                                fill="#262626"
-                                height="24"
-                                role="img"
-                                viewBox="0 0 24 24"
-                                width="24"
-                            >
-                                <path d="M22 23h-6.001a1 1 0 0 1-1-1v-5.455a2.997 2.997 0 1 0-5.993 0V22a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V11.543a1.002 1.002 0 0 1 .31-.724l10-9.543a1.001 1.001 0 0 1 1.38 0l10 9.543a1.002 1.002 0 0 1 .31.724V22a1 1 0 0 1-1 1Z" />
-                            </svg>{" "}
+                            {path === "/" ? (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-label="Home"
+                                    className="_ab6-"
+                                    color="#262626"
+                                    fill="#262626"
+                                    height="24"
+                                    role="img"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                >
+                                    <path d="M22 23h-6.001a1 1 0 0 1-1-1v-5.455a2.997 2.997 0 1 0-5.993 0V22a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V11.543a1.002 1.002 0 0 1 .31-.724l10-9.543a1.001 1.001 0 0 1 1.38 0l10 9.543a1.002 1.002 0 0 1 .31.724V22a1 1 0 0 1-1 1Z" />
+                                </svg>
+                            ) : (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-label="Home"
+                                    className="_ab6-"
+                                    color="#262626"
+                                    fill="#262626"
+                                    height="24"
+                                    role="img"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                >
+                                    <path
+                                        d="M9.005 16.545a2.997 2.997 0 0 1 2.997-2.997A2.997 2.997 0 0 1 15 16.545V22h7V11.543L12 2 2 11.543V22h7.005Z"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                    />
+                                </svg>
+                            )}
                             <span className="home-nav">Home</span>
                         </li>
                         <li className="nav-link">
@@ -221,7 +249,10 @@ function Navbar() {
                             </svg>
                             Messages
                         </li>
-                        <li className="nav-link">
+                        <li
+                            className="nav-link"
+                            onClick={() => setOpenCreatePost(!openCreatePost)}
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 aria-label="New post"
@@ -266,13 +297,24 @@ function Navbar() {
                             </svg>
                             Create
                         </li>
+                        {openCreatePost && (
+                            <CreatePost
+                                closeCreatePost={() => setOpenCreatePost(false)}
+                                setOpenCreatePost={setOpenCreatePost}
+                            />
+                        )}
                         <li
                             className="nav-link"
                             onClick={() =>
                                 navigate(`/profile/${myProfile?._id}`)
                             }
                         >
-                            <Avatar src={myProfile?.avatar?.url} />
+                            <div className="nav-avatar">
+                                <img
+                                    src={src ? src : userImage}
+                                    alt="User Avatar"
+                                />
+                            </div>
                             Profile
                         </li>
                     </ul>

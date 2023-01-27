@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../avatar/Avatar";
 import "./Post.scss";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -6,10 +6,14 @@ import { BsThreeDots } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { likeAndUnlikePost } from "../../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
+import Comments from "../comments/Comments";
+import PostOptions from "../postOptions/PostOptions";
 
-function Post({ post }) {
+function Post({ post, posts }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [openComments, setOpenComments] = useState(false);
+    const [openPostOptions, setOpenPostOptions] = useState(false);
 
     const handlePostLikes = () => {
         dispatch(
@@ -31,9 +35,18 @@ function Post({ post }) {
                     <h3 className="time-ago">• {post?.timeAgo}</h3>
                 </div>
 
-                <div className="right">
+                <div
+                    className="right"
+                    onClick={() => setOpenPostOptions(!openPostOptions)}
+                >
                     <BsThreeDots />
                 </div>
+                {openPostOptions && (
+                    <PostOptions
+                        closePostOptions={() => setOpenPostOptions(false)}
+                        post={post}
+                    />
+                )}
             </div>
             <div className="content">
                 <img src={post?.image?.url} alt="Post" />
@@ -51,7 +64,10 @@ function Post({ post }) {
                             onClick={handlePostLikes}
                         />
                     )}
-                    <div className="comment">
+                    <div
+                        className="comment"
+                        onClick={() => setOpenComments(!openComments)}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             aria-label="Comment"
@@ -72,6 +88,13 @@ function Post({ post }) {
                             />
                         </svg>
                     </div>
+                    {openComments && (
+                        <Comments
+                            closeComments={() => setOpenComments(false)}
+                            post={post}
+                            posts={posts}
+                        />
+                    )}
                 </div>
 
                 <h3 className="likesCount">{`${post.likesCount} likes`}</h3>

@@ -10,6 +10,20 @@
         padding: 8px 12px;
         position: relative;
 
+        .nav-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
         .banner {
             margin: 32px 12px 31px 12px;
         }

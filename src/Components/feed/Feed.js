@@ -22,7 +22,11 @@ function Feed() {
             <div className="container">
                 <div className="left-part">
                     {feedData?.posts?.map((post) => (
-                        <Post key={post._id} post={post} />
+                        <Post
+                            key={post._id}
+                            post={post}
+                            posts={feedData?.posts}
+                        />
                     ))}
                 </div>
                 <div className="right-part">
