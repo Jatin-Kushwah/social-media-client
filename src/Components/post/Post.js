@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Comments from "../comments/Comments";
 import PostOptions from "../postOptions/PostOptions";
 
-function Post({ post, posts }) {
+function Post({ post }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [openComments, setOpenComments] = useState(false);
@@ -92,7 +92,7 @@ function Post({ post, posts }) {
                         <Comments
                             closeComments={() => setOpenComments(false)}
                             post={post}
-                            posts={posts}
+                            setOpenComments={setOpenComments}
                         />
                     )}
                 </div>

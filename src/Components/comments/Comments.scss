@@ -78,14 +78,40 @@
 
             .comment-box {
                 height: 426px;
+                padding: 14px 16px;
+                display: flex;
+                overflow-y: auto;
+                flex-direction: column;
+                gap: 25px;
                 border-bottom: 1px solid var(--border-color);
+
+                .avatar-name {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+
+                    .name {
+                        cursor: pointer;
+                    }
+                }
 
                 .caption-container {
                     width: 100%;
-                    padding: 14px 16px;
-                    gap: 11px;
+                    gap: 6px;
                     display: flex;
                     align-items: center;
+                }
+
+                .comments {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 25px;
+
+                    .user-comments {
+                        display: flex;
+                        gap: 6px;
+                        align-items: center;
+                    }
                 }
             }
 
@@ -139,6 +165,7 @@
                         border: none;
                         font-size: 14px;
                         font-weight: 600;
+                        cursor: pointer;
                     }
                 }
             }
@@ -156,6 +183,7 @@
             form {
                 input {
                     background-color: black;
+                    color: white;
                 }
             }
         }

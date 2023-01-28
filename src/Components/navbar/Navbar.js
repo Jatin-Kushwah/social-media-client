@@ -5,11 +5,13 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import DropDown from "./dropdown/DropDown";
 import CreatePost from "../createPost/CreatePost";
+import SearchUser from "../searchUser/SearchUser";
 
 function Navbar({ darkMode, toggleDarkMode }) {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [openCreatePost, setOpenCreatePost] = useState(false);
+    const [openSearchBox, setOpenSearchBox] = useState(false);
     const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
     const src = myProfile?.avatar?.url;
 
@@ -87,7 +89,10 @@ function Navbar({ darkMode, toggleDarkMode }) {
                             )}
                             <span className="home-nav">Home</span>
                         </li>
-                        <li className="nav-link">
+                        <li
+                            className="nav-link"
+                            onClick={() => setOpenSearchBox(!openSearchBox)}
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 aria-label="Search"
@@ -121,6 +126,12 @@ function Navbar({ darkMode, toggleDarkMode }) {
                             </svg>
                             Search
                         </li>
+                        {openSearchBox && (
+                            <SearchUser
+                                closeSearchBox={() => setOpenSearchBox(false)}
+                                setOpenSearchBox={setOpenSearchBox}
+                            />
+                        )}
                         <li className="nav-link">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

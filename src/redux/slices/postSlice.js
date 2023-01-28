@@ -30,9 +30,7 @@ export const likeAndUnlikePost = createAsyncThunk(
 
 export const deletePost = createAsyncThunk("post/deletePost", async (body) => {
     try {
-        console.log("hello");
         const response = await axiosClient.delete("/post/", body);
-        console.log("this is delete response", response);
         return response.result.post;
     } catch (error) {
         return Promise.reject(error);

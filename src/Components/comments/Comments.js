@@ -4,20 +4,28 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import "./Comments.scss";
 import { likeAndUnlikePost } from "../../redux/slices/postSlice";
+import userImage from "../../assets/user.png";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, getComments } from "../../redux/slices/commentSlice";
 
-function Comments({ closeComments, post, posts, darkMode }) {
+function Comments({ closeComments, post, darkMode, setOpenComments }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [comment, setComment] = useState("");
+    const [content, setContent] = useState("");
+
     const comments = useSelector((state) => state.commentReducer.comments);
 
-    // useEffect(() => {
-    //     dispatch(getComments());
-    // }, [dispatch]);
+    console.log(comments);
+
+    useEffect(() => {
+        dispatch(
+            getComments({
+                postId: post._id,
+            })
+        );
+    }, [dispatch, post._id]);
 
     const handlePostLikes = () => {
         dispatch(
@@ -27,18 +35,15 @@ function Comments({ closeComments, post, posts, darkMode }) {
         );
     };
 
-    const handleSubmitComment = (e) => {
+    const handleSubmitComment = async (e) => {
         e.preventDefault();
-        if (comment) {
-            dispatch(
-                createComment({
-                    postId: post._id,
-                    content: comment,
-                })
-            );
-            console.log(comment);
-            setComment("");
-        }
+        dispatch(
+            createComment({
+                content,
+                postId: post._id,
+            })
+        );
+        setContent("");
     };
 
     return (
@@ -71,25 +76,44 @@ function Comments({ closeComments, post, posts, darkMode }) {
                     </div>
                     <div className="comment-box">
                         <div className="caption-container">
-                            <Avatar src={post.owner?.avatar?.url} />
-                            <h3
-                                className="heading-name"
-                                onClick={() =>
-                                    navigate(`/profile/${post.owner._id}`)
-                                }
-                            >
-                                {post?.owner?.name}
-                            </h3>
+                            <div className="avatar-name">
+                                <Avatar src={post.owner?.avatar?.url} />
+                                <h3
+                                    className="name"
+                                    onClick={() =>
+                                        navigate(`/profile/${post.owner._id}`)
+                                    }
+                                >
+                                    {post?.owner?.name}
+                                </h3>
+                            </div>
                             <p className="caption">{post.caption}</p>
                         </div>
                         <div className="comments">
-                            {posts?.map((post) => (
-                                <div key={post._id}>
-                                    <Avatar src={post.owner?.avatar?.url} />
-                                    <p>{post.comments}</p>
+                            {comments?.map((comment) => (
+                                <div
+                                    className="user-comments"
+                                    key={comment._id}
+                                >
+                                    <div
+                                        className="avatar-name"
+                                        onClick={() => {
+                                            navigate(
+                                                `/profile/${comment.user._id}`
+                                            );
+                                            setOpenComments(false);
+                                        }}
+                                    >
+                                        <Avatar
+                                            src={comment?.user?.avatar?.url}
+                                        />
+                                        <h3 className="name">
+                                            {comment?.user?.name}
+                                        </h3>
+                                    </div>
+                                    <p>{comment?.content}</p>
                                 </div>
                             ))}
-                            {comment}
                         </div>
                     </div>
                     <div className="like-comment-time">
@@ -136,8 +160,8 @@ function Comments({ closeComments, post, posts, darkMode }) {
                             <input
                                 type="text"
                                 placeholder="Add a comment..."
-                                value={comment}
-                                onChange={(e) => setComment(e.target.value)}
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
                             />
                             <button type="submit">Post</button>
                         </form>

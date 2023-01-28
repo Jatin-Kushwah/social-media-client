@@ -13,15 +13,17 @@ export const createComment = createAsyncThunk(
     }
 );
 
-export const getComments = createAsyncThunk("comment/getComments", async () => {
-    try {
-        const response = await axiosClient.get("/");
-        console.log(response);
-        return response.result;
-    } catch (error) {
-        return Promise.reject(error);
+export const getComments = createAsyncThunk(
+    "comment/getComments",
+    async (body) => {
+        try {
+            const response = await axiosClient.get("/comment/comments", body);
+            return response.result;
+        } catch (error) {
+            return Promise.reject(error);
+        }
     }
-});
+);
 
 const commentSlice = createSlice({
     name: "commentSlice",
