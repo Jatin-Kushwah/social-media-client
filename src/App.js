@@ -7,10 +7,11 @@ import Feed from "./Components/feed/Feed";
 import Profile from "./Components/profile/Profile";
 import UpdateProfile from "./Components/updateProfile/UpdateProfile";
 import { useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 import RequireIfNoLogin from "./Components/RequireIfNoLogin";
 import toast, { Toaster } from "react-hot-toast";
+import { getItem, removeItem, setItem } from "./Utils/localStorageManager";
 
 export const TOAST_SUCCESS = "toast_success";
 export const TOAST_FAILURE = "toast_failure";
@@ -18,6 +19,8 @@ export const TOAST_FAILURE = "toast_failure";
 function App() {
     const isLoading = useSelector((state) => state.appConfigReducer.isLoading);
     const toastData = useSelector((state) => state.appConfigReducer.toastData);
+
+    const [darkMode, setDarkMode] = useState(getItem("darkMode") || false);
     const loadingRef = useRef(null);
 
     useEffect(() => {
@@ -27,6 +30,13 @@ function App() {
             loadingRef.current?.complete();
         }
     }, [isLoading]);
+
+    useEffect(() => {
+        const storedDarkMode = getItem("darkMode");
+        if (storedDarkMode !== null) {
+            setDarkMode(storedDarkMode);
+        }
+    }, []);
 
     useEffect(() => {
         switch (toastData.type) {
@@ -41,15 +51,31 @@ function App() {
         }
     }, [toastData]);
 
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+        if (darkMode) {
+            removeItem("darkMode");
+        } else {
+            setItem("darkMode", !darkMode);
+        }
+    };
+
     return (
-        <div className="App">
-            <LoadingBar color="#000" ref={loadingRef} />
+        <div className={darkMode ? "App dark-mode" : "App"}>
+            <LoadingBar color={darkMode ? "white" : "#000"} ref={loadingRef} />
             <div>
                 <Toaster />
             </div>
             <Routes>
                 <Route element={<RequireUser />}>
-                    <Route element={<Home />}>
+                    <Route
+                        element={
+                            <Home
+                                darkMode={darkMode}
+                                toggleDarkMode={toggleDarkMode}
+                            />
+                        }
+                    >
                         <Route path="/" element={<Feed />} />
                         <Route path="/profile/:userId" element={<Profile />} />
                         <Route

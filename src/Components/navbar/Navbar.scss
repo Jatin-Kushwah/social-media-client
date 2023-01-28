@@ -77,3 +77,19 @@
         }
     }
 }
+
+.dark-mode {
+    .Navbar {
+        background-color: black;
+        color: white;
+
+        .nav-link:hover {
+            background-color: rgba(32, 32, 32, 0.46);
+        }
+
+        svg {
+            color: white;
+            fill: white;
+        }
+    }
+}

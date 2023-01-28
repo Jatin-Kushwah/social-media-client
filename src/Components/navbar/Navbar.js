@@ -6,7 +6,7 @@ import { useState } from "react";
 import DropDown from "./dropdown/DropDown";
 import CreatePost from "../createPost/CreatePost";
 
-function Navbar() {
+function Navbar({ darkMode, toggleDarkMode }) {
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [openCreatePost, setOpenCreatePost] = useState(false);
@@ -21,7 +21,7 @@ function Navbar() {
     };
 
     return (
-        <div className="Navbar">
+        <div className={darkMode ? "Navbar dark-mode" : "Navbar"}>
             <div className="nav-container">
                 <div
                     className="banner hover-link "
@@ -393,6 +393,8 @@ function Navbar() {
                             isDropdownOpen={isDropdownOpen}
                             setIsDropdownOpen={setIsDropdownOpen}
                             dropDownClose={() => setIsDropdownOpen(false)}
+                            toggleDarkMode={toggleDarkMode}
+                            darkMode={darkMode}
                         />
                     )}
                 </div>

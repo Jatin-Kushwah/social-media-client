@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { getMyInfo } from "../../redux/slices/appConfigSlice";
 import "./Home.scss";
 
-function Home({ isDropdownOpen, dropDownClose }) {
+function Home({ darkMode, toggleDarkMode }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -14,7 +14,7 @@ function Home({ isDropdownOpen, dropDownClose }) {
 
     return (
         <div className="Home">
-            <Navbar />
+            <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
             <div className="outlet" style={{ width: "100%" }}>
                 <Outlet />
             </div>

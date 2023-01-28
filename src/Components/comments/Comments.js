@@ -9,7 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, getComments } from "../../redux/slices/commentSlice";
 
-function Comments({ closeComments, post, posts }) {
+function Comments({ closeComments, post, posts, darkMode }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [comment, setComment] = useState("");
@@ -42,7 +42,7 @@ function Comments({ closeComments, post, posts }) {
     };
 
     return (
-        <div className="Comments">
+        <div className={darkMode ? "Comments dark-mode" : "Comments"}>
             <div className="blank" onClick={closeComments}></div>
             <div className="comment-container">
                 <div className="close-icon" onClick={closeComments}>

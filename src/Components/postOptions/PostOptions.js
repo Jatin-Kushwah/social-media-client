@@ -4,7 +4,7 @@ import { followAndUnfollowUser } from "../../redux/slices/feedSlice";
 import { deletePost } from "../../redux/slices/postSlice";
 import "./PostOptions.scss";
 
-function PostOptions({ closePostOptions, post }) {
+function PostOptions({ closePostOptions, post, darkMode }) {
     const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
     const feedData = useSelector((state) => state.feedDataReducer.feedData);
     const [isFollowing, setIsFollowing] = useState();
@@ -35,7 +35,7 @@ function PostOptions({ closePostOptions, post }) {
     };
 
     return (
-        <div className="PostOptions">
+        <div className={darkMode ? "PostOptions dark-mode" : "PostOptions"}>
             <div className="blank" onClick={closePostOptions}></div>
             <div className="option-container">
                 {currentUserId === post?.owner?._id && (

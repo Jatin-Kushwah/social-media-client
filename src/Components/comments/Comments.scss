@@ -134,12 +134,28 @@
                     }
 
                     button {
-                        background: white;
+                        background: none;
                         color: var(--accent-color);
                         border: none;
                         font-size: 14px;
                         font-weight: 600;
                     }
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+    .Comments {
+        .comment-container {
+            background-color: black;
+        }
+
+        .comment-input {
+            form {
+                input {
+                    background-color: black;
                 }
             }
         }

@@ -73,3 +73,25 @@ p {
 .btn-secondary:active {
     background: none;
 }
+.dark-mode {
+    background-color: black;
+    --border-color: rgba(81, 81, 81, 0.544);
+    color: white;
+
+    svg {
+        color: white;
+    }
+
+    p {
+        color: white;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: white;
+    }
+}

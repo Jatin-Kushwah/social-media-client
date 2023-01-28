@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { axiosClient } from "../../Utils/axiosClient";
 import { getUserProfile } from "../../redux/slices/postSlice";
 
-function CreatePost({ closeCreatePost, setOpenCreatePost }) {
+function CreatePost({ closeCreatePost, setOpenCreatePost, darkMode }) {
     const [postImg, setPostImg] = useState("");
     const [caption, setCaption] = useState("");
     const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function CreatePost({ closeCreatePost, setOpenCreatePost }) {
     };
 
     return (
-        <div className="CreatePost">
+        <div className={darkMode ? "CreatePost dark-mode" : "CreatePost"}>
             <div className="blank" onClick={closeCreatePost}></div>
             <div className="close-icon" onClick={closeCreatePost}>
                 <RxCross2 />

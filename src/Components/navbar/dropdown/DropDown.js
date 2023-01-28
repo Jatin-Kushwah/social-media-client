@@ -7,7 +7,7 @@ import { axiosClient } from "../../../Utils/axiosClient";
 import { useNavigate } from "react-router-dom";
 import "./DropDown.scss";
 
-function DropDown({ dropDownClose }) {
+function DropDown({ toggleDarkMode, darkMode, dropDownClose }) {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -21,7 +21,7 @@ function DropDown({ dropDownClose }) {
     };
 
     return (
-        <div className="Dropdown">
+        <div className={darkMode ? "Dropdown dark-mode" : "Dropdown"}>
             <div className="blank" onClick={dropDownClose}></div>
             <ul>
                 <li onClick={() => navigate("/updateProfile")}>
@@ -56,7 +56,7 @@ function DropDown({ dropDownClose }) {
                         />
                     </svg>
                 </li>
-                <li>
+                <li onClick={toggleDarkMode}>
                     Switch appearance
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
