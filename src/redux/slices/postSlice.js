@@ -51,7 +51,7 @@ const postSlice = createSlice({
             })
             .addCase(deletePost.fulfilled, (state, action) => {
                 const index = state?.userProfile?.posts?.findIndex(
-                    (item) => item._id === action.payload._id
+                    (item) => item === action.payload
                 );
                 if (index !== undefined && index !== -1) {
                     state.userProfile.posts.splice(index, 1);

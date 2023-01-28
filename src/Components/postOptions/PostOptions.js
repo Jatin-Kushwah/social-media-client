@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { followAndUnfollowUser } from "../../redux/slices/feedSlice";
 import { deletePost } from "../../redux/slices/postSlice";
-import { axiosClient } from "../../Utils/axiosClient";
 import "./PostOptions.scss";
 
 function PostOptions({ closePostOptions, post }) {
@@ -11,14 +9,13 @@ function PostOptions({ closePostOptions, post }) {
     const feedData = useSelector((state) => state.feedDataReducer.feedData);
     const [isFollowing, setIsFollowing] = useState();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const currentUserId = myProfile?._id;
 
     useEffect(() => {
         setIsFollowing(
             feedData?.followings?.find((item) => item._id === post?.owner?._id)
         );
-    }, [dispatch]);
+    }, [feedData, post, dispatch]);
 
     const handleFollowUser = () => {
         dispatch(
@@ -31,9 +28,10 @@ function PostOptions({ closePostOptions, post }) {
     const handleDeletePost = () => {
         dispatch(
             deletePost({
-                postId: post._id,
+                data: { postId: post._id },
             })
         );
+        closePostOptions(false);
     };
 
     return (
