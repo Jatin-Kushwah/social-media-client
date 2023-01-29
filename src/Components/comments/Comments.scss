@@ -127,6 +127,45 @@
                     gap: 14px;
                     padding-bottom: 7px;
                     align-items: center;
+
+                    .icon {
+                        font-size: 28px;
+                        animation: like 0.25s;
+                        cursor: pointer;
+                    }
+
+                    .icon:hover {
+                        color: #aaa;
+                    }
+
+                    .liked {
+                        animation: like 0.25s;
+                        fill: #ed4956;
+                        stroke: #ed4956;
+                    }
+
+                    .comment {
+                        display: flex;
+                        cursor: pointer;
+                    }
+
+                    .comment:hover {
+                        svg {
+                            color: #aaa;
+                        }
+                    }
+
+                    @keyframes like {
+                        0% {
+                            transform: scale(1);
+                        }
+                        90% {
+                            transform: scale(1.2);
+                        }
+                        100% {
+                            transform: scale(1);
+                        }
+                    }
                 }
 
                 .time {

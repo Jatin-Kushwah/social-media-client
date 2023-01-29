@@ -39,6 +39,7 @@ function Profile() {
         );
     };
 
+    console.log(myProfile);
     return (
         <div className="Profile">
             <div className="container">

@@ -12,6 +12,7 @@ import LoadingBar from "react-top-loading-bar";
 import RequireIfNoLogin from "./Components/RequireIfNoLogin";
 import toast, { Toaster } from "react-hot-toast";
 import { getItem, removeItem, setItem } from "./Utils/localStorageManager";
+import Explore from "./Components/explore/Explore";
 
 export const TOAST_SUCCESS = "toast_success";
 export const TOAST_FAILURE = "toast_failure";
@@ -77,6 +78,7 @@ function App() {
                         }
                     >
                         <Route path="/" element={<Feed />} />
+                        <Route path="/explore" element={<Explore />} />
                         <Route path="/profile/:userId" element={<Profile />} />
                         <Route
                             path="/updateProfile"

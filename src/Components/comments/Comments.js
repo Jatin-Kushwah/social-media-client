@@ -8,8 +8,16 @@ import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, getComments } from "../../redux/slices/commentSlice";
+import PostOptions from "../postOptions/PostOptions";
 
-function Comments({ closeComments, post, darkMode, setOpenComments }) {
+function Comments({
+    closeComments,
+    post,
+    darkMode,
+    setOpenComments,
+    setOpenPostOptions,
+    openPostOptions,
+}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
@@ -28,7 +36,7 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
         );
     }, [dispatch, post._id]);
 
-    const handlePostLikes = () => {
+    const handlePostLike = () => {
         dispatch(
             likeAndUnlikePost({
                 postId: post._id,
@@ -74,9 +82,20 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                             </h3>
                         </div>
 
-                        <div className="right">
+                        <div
+                            className="right"
+                            onClick={() => setOpenPostOptions(!openPostOptions)}
+                        >
                             <BsThreeDots />
                         </div>
+                        {openPostOptions && (
+                            <PostOptions
+                                closePostOptions={() =>
+                                    setOpenPostOptions(false)
+                                }
+                                post={post}
+                            />
+                        )}
                     </div>
                     <div className="comment-box">
                         <div className="caption-container">
@@ -125,12 +144,12 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                             {post.isLiked ? (
                                 <AiFillHeart
                                     className="icon liked"
-                                    onClick={handlePostLikes}
+                                    onClick={handlePostLike}
                                 />
                             ) : (
                                 <AiOutlineHeart
                                     className="icon"
-                                    onClick={handlePostLikes}
+                                    onClick={handlePostLike}
                                 />
                             )}
                             <div className="comment">

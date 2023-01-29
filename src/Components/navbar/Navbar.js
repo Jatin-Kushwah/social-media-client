@@ -132,7 +132,10 @@ function Navbar({ darkMode, toggleDarkMode }) {
                                 setOpenSearchBox={setOpenSearchBox}
                             />
                         )}
-                        <li className="nav-link">
+                        <li
+                            className="nav-link"
+                            onClick={() => navigate("/explore")}
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 aria-label="Explore"

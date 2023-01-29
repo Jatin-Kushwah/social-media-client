@@ -1,0 +1,24 @@
+.Explore {
+    padding: 24px 85px;
+
+    .explore-container {
+        .posts {
+            width: 100%;
+            display: grid;
+            gap: 38px;
+            grid-template-columns: repeat(3, 1fr);
+
+            .single-post {
+                width: 292px;
+                height: 292px;
+                cursor: pointer;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
