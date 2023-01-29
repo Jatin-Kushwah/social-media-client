@@ -4,7 +4,6 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import "./Comments.scss";
 import { likeAndUnlikePost } from "../../redux/slices/postSlice";
-import userImage from "../../assets/user.png";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +16,9 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
 
     const comments = useSelector((state) => state.commentReducer.comments);
 
-    console.log(comments);
+    const filteredComments = comments.filter(
+        (comment) => comment?.post === post._id
+    );
 
     useEffect(() => {
         dispatch(
@@ -40,10 +41,13 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
         dispatch(
             createComment({
                 content,
-                postId: post._id,
+                postId: `${post._id}`,
             })
         );
         setContent("");
+        setTimeout(() => {
+            dispatch(getComments({ postId: `${post._id}` }));
+        }, 10);
     };
 
     return (
@@ -90,7 +94,7 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                             <p className="caption">{post.caption}</p>
                         </div>
                         <div className="comments">
-                            {comments?.map((comment) => (
+                            {filteredComments?.map((comment) => (
                                 <div
                                     className="user-comments"
                                     key={comment._id}
