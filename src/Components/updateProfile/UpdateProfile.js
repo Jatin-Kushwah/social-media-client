@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./UpdateProfile.scss";
 import { useDispatch, useSelector } from "react-redux";
 import userImage from "../../assets/user.png";
-import { FaPlus } from "react-icons/fa";
 import { updateMyProfile } from "../../redux/slices/appConfigSlice";
 import { axiosClient } from "../../Utils/axiosClient";
 import { KEY_ACCESS_TOKEN, removeItem } from "../../Utils/localStorageManager";
 import { useNavigate } from "react-router-dom";
 
-function UpdateProfile() {
+function UpdateProfile({ darkMode }) {
     const navigate = useNavigate();
     const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
     const dispatch = useDispatch();
@@ -57,52 +56,73 @@ function UpdateProfile() {
     };
 
     return (
-        <div className="UpdateProfile">
-            <div className="container">
+        <div className={darkMode ? "UpdateProfile dark-mode" : "UpdateProfile"}>
+            <div className="profile-container">
                 <div className="left-part">
-                    <div className="input-user-img">
-                        <label htmlFor="inputImg" className="labelImg">
-                            <span className="plus-icon">
-                                <FaPlus />
-                            </span>
-                            <img src={userImg ? userImg : userImage} alt="" />
-                        </label>
-                        <input
-                            className="inputImg"
-                            id="inputImg"
-                            type="file"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                        />
-                    </div>
+                    <h3>Edit profile</h3>
                 </div>
                 <div className="right-part">
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            value={name}
-                            type="text"
-                            placeholder="Your Name"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input
-                            value={bio}
-                            type="text"
-                            placeholder="Your Bio"
-                            onChange={(e) => setBio(e.target.value)}
-                        />
-                        <input
-                            type="submit"
-                            className="btn-primary"
-                            onClick={handleSubmit}
-                        />
-                    </form>
+                    <div className="right-container">
+                        <div className="avatar-name">
+                            <div className="avatar">
+                                <img
+                                    src={userImg ? userImg : userImage}
+                                    alt="user avatar"
+                                />
+                            </div>
+                            <div className="name-change-img">
+                                <p>{myProfile?.name}</p>
+                                <div className="input-user-img">
+                                    <label
+                                        htmlFor="inputImg"
+                                        className="labelImg"
+                                    >
+                                        <h3 className="click-text">
+                                            Change profile photo
+                                        </h3>
+                                    </label>
+                                    <input
+                                        className="inputImg"
+                                        id="inputImg"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="name-input">
+                                <h3>Name</h3>
+                                <input
+                                    value={name}
+                                    type="text"
+                                    placeholder="Your Name"
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </div>
 
-                    <button
-                        className="delete-account btn-primary"
-                        onClick={handleDelete}
-                    >
-                        Delete Account
-                    </button>
+                            <div className="bio-input">
+                                <h3>Bio</h3>
+                                <textarea
+                                    value={bio}
+                                    type="text"
+                                    placeholder="Your Bio"
+                                    onChange={(e) => setBio(e.target.value)}
+                                />
+                            </div>
+                            <div className="submit-delete">
+                                <input
+                                    type="submit"
+                                    className="submit-button"
+                                    onClick={handleSubmit}
+                                />
+                                <h3 className="danger" onClick={handleDelete}>
+                                    Delete my account permanently
+                                </h3>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

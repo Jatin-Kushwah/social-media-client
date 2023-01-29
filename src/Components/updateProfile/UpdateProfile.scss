@@ -1,65 +1,140 @@
 .UpdateProfile {
-    .container {
-        display: flex;
-        padding-top: 20px;
+    padding: 30px 84px;
+
+    .profile-container {
+        display: grid;
+        border-radius: 4px;
+        grid-template-columns: 234px auto;
+        width: 953x;
+        border: 1px solid var(--border-color);
 
         .left-part {
-            flex: 1;
-            text-align: center;
-
-            .input-user-img {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                .labelImg {
-                    position: relative;
-                    width: 85px;
-                    height: 85px;
-                    border-radius: 50%;
-                    border: 4px solid #d0d0d0;
-                    cursor: pointer;
-
-                    .plus-icon {
-                        color: #d0d0d0;
-                        font-size: 1.4rem;
-                        position: absolute;
-                        top: 1.6rem;
-                        left: 1.7rem;
-                        z-index: 1;
-                    }
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 50%;
-                        opacity: 0.75;
-                        object-fit: cover;
-                    }
-                }
-
-                .inputImg {
-                    display: none;
-                }
-            }
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-left: 2px solid black;
         }
 
         .right-part {
-            flex: 3;
+            border-left: 1px solid var(--border-color);
 
-            form {
-                border: 1px solid var(--border-color);
-                padding: 20px;
-                border-radius: 4px;
-            }
+            .right-container {
+                padding: 34px 124px;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
 
-            input {
-                width: 100%;
-                display: block;
-                padding: 8px 16px;
-                margin-top: 16px;
-                border-radius: 4px;
-                border: 1px solid var(--border-color);
+                .avatar-name {
+                    display: flex;
+                    gap: 32px;
+
+                    .avatar {
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 50%;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .name-change-img {
+                        p {
+                            font-weight: 500;
+                        }
+
+                        .input-user-img {
+                            .labelImg {
+                                cursor: pointer;
+
+                                .click-text {
+                                    color: var(--accent-color);
+                                }
+
+                                .click-text:hover {
+                                    color: #043e64;
+                                }
+                            }
+
+                            .inputImg {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 22px;
+
+                    h3 {
+                        font-size: 16px;
+                    }
+
+                    .name-input {
+                        display: flex;
+                        gap: 30px;
+                        align-items: center;
+
+                        input {
+                            width: 355px;
+                            display: block;
+                            padding: 8px 10px;
+                            border-radius: 4px;
+                            border: 1px solid var(--border-color);
+                            outline: none;
+                        }
+                    }
+
+                    .bio-input {
+                        display: flex;
+                        gap: 50px;
+                        align-items: center;
+
+                        textarea {
+                            width: 355px;
+                            display: block;
+                            font-family: Arial;
+                            font-size: 14px;
+                            letter-spacing: 0.2px;
+                            padding: 8px 10px;
+                            border-radius: 4px;
+                            border: 1px solid var(--border-color);
+                            outline: none;
+                        }
+                    }
+
+                    .submit-delete {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .submit-button {
+                            padding: 8px 15px;
+                            font-weight: 600;
+                            color: white;
+                            background-color: var(--accent-color);
+                            border: none;
+                            border-radius: 8px;
+                            cursor: pointer;
+                        }
+
+                        .danger {
+                            color: #ed4956;
+                            font-size: 14px;
+                            cursor: pointer;
+                        }
+
+                        .danger:hover {
+                            color: #b62e39;
+                        }
+                    }
+                }
             }
 
             .btn-primary {
@@ -68,7 +143,30 @@
 
             .delete-account {
                 margin-top: 16px;
-                background-color: red;
+                background-color: #ed4956;
+            }
+        }
+    }
+}
+
+.dark-mode {
+    .UpdateProfile {
+        .profile-container {
+            .left-part {
+                border-left: 2px solid white;
+            }
+
+            .right-part {
+                .right-container {
+                    input {
+                        background: transparent;
+                        color: white;
+                    }
+                    textarea {
+                        background: transparent;
+                        color: white;
+                    }
+                }
             }
         }
     }
