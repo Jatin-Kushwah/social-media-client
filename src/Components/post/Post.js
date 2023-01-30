@@ -90,8 +90,6 @@ function Post({ post }) {
                     </div>
                     {openComments && (
                         <Comments
-                            openPostOptions={openPostOptions}
-                            setOpenPostOptions={setOpenPostOptions}
                             closeComments={() => setOpenComments(false)}
                             post={post}
                             setOpenComments={setOpenComments}

@@ -24,35 +24,29 @@ function Explore() {
                     {exploreData?.posts?.map((post) => (
                         <div
                             key={post._id}
-                            className="single-post"
-                            onClick={() => setPostId(post)}
+                            className="post"
+                            onClick={() => {
+                                setOpenComments(!openComments);
+                                setPostId(post);
+                            }}
                         >
-                            <img
-                                src={
-                                    post?.image?.url
-                                        ? post?.image?.url
-                                        : userImage
-                                }
-                                alt="post"
-                                onClick={() =>
-                                    setOpenComments({
-                                        ...openComments,
-                                        [post._id]: !openComments[post._id],
-                                    })
-                                }
-                            />
+                            <div className="single-post">
+                                <img
+                                    src={
+                                        post?.image?.url
+                                            ? post?.image?.url
+                                            : userImage
+                                    }
+                                    alt="post"
+                                />
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
-            {openComments[postId._id] && (
+            {openComments && (
                 <Comments
-                    closeComments={() =>
-                        setOpenComments({
-                            ...openComments,
-                            [postId._id]: false,
-                        })
-                    }
+                    closeComments={() => setOpenComments(false)}
                     post={postId}
                     setOpenComments={setOpenComments}
                 />

@@ -42,37 +42,6 @@ h3 {
     font-weight: 600;
 }
 
-p {
-    color: #555;
-    font-size: 0.9rem;
-}
-
-.hover-link {
-    cursor: pointer;
-}
-
-.container {
-    max-width: 960px;
-    margin-inline: auto;
-}
-
-.btn-secondary {
-    border: 2px solid var(--accent-color);
-    color: var(--accent-color);
-    font-weight: bold;
-    padding: 10px 40px;
-    border-radius: 4px;
-    cursor: pointer;
-    background: none;
-}
-
-.btn-secondary:hover {
-    background-color: #ddd;
-}
-
-.btn-secondary:active {
-    background: none;
-}
 .dark-mode {
     background-color: black;
     --border-color: rgba(81, 81, 81, 0.544);

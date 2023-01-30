@@ -25,10 +25,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
     return (
         <div className={darkMode ? "Navbar dark-mode" : "Navbar"}>
             <div className="nav-container">
-                <div
-                    className="banner hover-link "
-                    onClick={() => navigate("/")}
-                >
+                <div className="banner" onClick={() => navigate("/")}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         aria-label="Instagram"

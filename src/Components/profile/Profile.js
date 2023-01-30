@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.scss";
-import Post from "../post/Post.js";
 import { useNavigate, useParams } from "react-router-dom";
 import userImage from "../../assets/user.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/slices/postSlice";
 import { followAndUnfollowUser } from "../../redux/slices/feedSlice";
-
+import Comments from "../comments/Comments";
 function Profile() {
     const navigate = useNavigate();
     const params = useParams();
@@ -16,6 +15,8 @@ function Profile() {
     const dispatch = useDispatch();
     const [isMyProfile, setIsMyProfile] = useState(false);
     const [isFollowing, setIsFollowing] = useState();
+    const [openComments, setOpenComments] = useState(false);
+    const [postId, setPostId] = useState("");
     const userImg = userProfile?.avatar?.url;
 
     useEffect(() => {
@@ -41,48 +42,93 @@ function Profile() {
 
     return (
         <div className="Profile">
-            <div className="container">
-                <div className="left-part">
-                    {userProfile?.posts?.map((post) => (
-                        <Post key={post._id} post={post} />
-                    ))}
-                </div>
-                <div className="right-part">
+            <div className="profile-container">
+                <div className="upper-part">
                     <div className="profile-card">
-                        <img
-                            className="user-img"
-                            src={userImg ? userImg : userImage}
-                            alt="User"
-                        />
-                        <h3 className="user-name">{userProfile?.name}</h3>
-                        <p className="bio">{userProfile?.bio}</p>
-                        <div className="follower-info">
-                            <h4>{`${userProfile?.followers?.length} Follower`}</h4>
-                            <h4>
-                                {`${userProfile?.followings?.length} Following`}
-                            </h4>
+                        <div className="user-profile">
+                            <img
+                                className="user-img"
+                                src={userImg ? userImg : userImage}
+                                alt="User"
+                            />
+                            <div className="user-details">
+                                <div className="user-name">
+                                    <h2 className="name">
+                                        {userProfile?.name}
+                                    </h2>
+                                    {isMyProfile && (
+                                        <button
+                                            className="edit-profile "
+                                            onClick={() => {
+                                                navigate("/updateProfile");
+                                            }}
+                                        >
+                                            Edit profile
+                                        </button>
+                                    )}
+                                    {!isMyProfile && (
+                                        <button
+                                            onClick={handleFollowUser}
+                                            className={
+                                                isFollowing
+                                                    ? "following"
+                                                    : "follow"
+                                            }
+                                        >
+                                            {isFollowing
+                                                ? "Following"
+                                                : "Follow"}
+                                        </button>
+                                    )}
+                                </div>
+                                <div className="follower-info">
+                                    <div className="posts">
+                                        <h3> {userProfile?.posts?.length}</h3>
+                                        <p>posts</p>
+                                    </div>
+                                    <div className="followers">
+                                        <h3>
+                                            {userProfile?.followers?.length}
+                                        </h3>
+                                        <p>followers</p>
+                                    </div>
+                                    <div className="followings">
+                                        <h3>
+                                            {userProfile?.followings?.length}
+                                        </h3>
+                                        <p>following</p>
+                                    </div>
+                                </div>
+                                <p className="bio">{userProfile?.bio}</p>
+                            </div>
                         </div>
-                        {!isMyProfile && (
-                            <h5
-                                onClick={handleFollowUser}
-                                className={
-                                    isFollowing
-                                        ? "hover-link follow-link"
-                                        : "btn-primary"
-                                }
-                            >
-                                {isFollowing ? "Unfollow" : "Follow"}
-                            </h5>
-                        )}
-                        {isMyProfile && (
-                            <button
-                                className="update-profile btn-secondary"
+                    </div>
+                </div>
+                <div className="lower-part">
+                    <div className="user-images">
+                        {userProfile?.posts?.map((post) => (
+                            <div
+                                key={post._id}
+                                className="image"
                                 onClick={() => {
-                                    navigate("/updateProfile");
+                                    setOpenComments(!openComments);
+                                    setPostId(post);
                                 }}
                             >
-                                Update Profile
-                            </button>
+                                <div className="single-image">
+                                    <img
+                                        src={post?.image?.url}
+                                        alt="user post"
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                        {openComments && (
+                            <Comments
+                                closeComments={() => setOpenComments(false)}
+                                post={postId}
+                                setOpenComments={setOpenComments}
+                            />
                         )}
                     </div>
                 </div>

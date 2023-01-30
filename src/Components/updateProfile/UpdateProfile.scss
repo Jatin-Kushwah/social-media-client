@@ -44,7 +44,7 @@
 
                     .name-change-img {
                         p {
-                            font-weight: 500;
+                            font-weight: 400;
                         }
 
                         .input-user-img {
@@ -124,6 +124,10 @@
                             cursor: pointer;
                         }
 
+                        .submit-button:hover {
+                            background-color: #0668aa;
+                        }
+
                         .danger {
                             color: #ed4956;
                             font-size: 14px;
@@ -158,6 +162,18 @@
 
             .right-part {
                 .right-container {
+                    .avatar-name {
+                        .name-change-img {
+                            .input-user-img {
+                                .labelImg {
+                                    .click-text:hover {
+                                        color: white;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     input {
                         background: transparent;
                         color: white;
