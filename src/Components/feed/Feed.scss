@@ -71,7 +71,7 @@
 
             .suggestions-container {
                 height: 279px;
-                overflow: hidden;
+                overflow-y: auto;
 
                 .suggestions {
                     padding-left: 4px;

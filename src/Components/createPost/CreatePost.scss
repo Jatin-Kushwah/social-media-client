@@ -63,10 +63,11 @@
             grid-template-columns: 476px auto;
 
             .create-left-part {
+                border-right: 1px solid var(--border-color);
                 display: flex;
+                justify-content: center;
                 height: 478px;
                 width: 100%;
-                border-right: 1px solid var(--border-color);
 
                 .add-post {
                     display: flex;
