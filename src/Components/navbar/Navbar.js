@@ -172,7 +172,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                             </svg>
                             Explore
                         </li>
-                        <li className="nav-link">
+                        {/* <li className="nav-link">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 aria-label="Reels"
@@ -262,7 +262,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                                 />
                             </svg>
                             Messages
-                        </li>
+                        </li> */}
                         <li
                             className="nav-link"
                             onClick={() => setOpenCreatePost(!openCreatePost)}

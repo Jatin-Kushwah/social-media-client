@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "../avatar/Avatar";
 import { BsThreeDots } from "react-icons/bs";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import "./Comments.scss";
 import { likeAndUnlikePost } from "../../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment, getComments } from "../../redux/slices/commentSlice";
+import {
+    createComment,
+    deleteComment,
+    getComments,
+} from "../../redux/slices/commentSlice";
 import PostOptions from "../postOptions/PostOptions";
+import CommentOption from "./commentOption/CommentOption";
 
-function Comments({
-    closeComments,
-    post,
-    darkMode,
-    setOpenComments,
-    setOpenPostOptions,
-    openPostOptions,
-}) {
+function Comments({ closeComments, post, darkMode, setOpenComments }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
+    const [openPostOptions, setOpenPostOptions] = useState(false);
+    const [openCommentOption, setOpenCommentOption] = useState(false);
 
     const comments = useSelector((state) => state.commentReducer.comments);
+    const feedData = useSelector((state) => state.feedDataReducer.feedData);
 
     const filteredComments = comments.filter(
         (comment) => comment?.post === post._id
@@ -34,7 +36,7 @@ function Comments({
                 postId: post._id,
             })
         );
-    }, [dispatch, post._id]);
+    }, [dispatch, post._id, post.likesCount]);
 
     const handlePostLike = () => {
         dispatch(
@@ -55,7 +57,21 @@ function Comments({
         setContent("");
         setTimeout(() => {
             dispatch(getComments({ postId: `${post._id}` }));
-        }, 10);
+        }, 500);
+    };
+
+    const handleDeleteComment = (commentId) => {
+        dispatch(
+            deleteComment({
+                data: {
+                    commentId,
+                },
+            })
+        );
+        setOpenCommentOption(false);
+        setTimeout(() => {
+            dispatch(getComments({ postId: `${post._id}` }));
+        }, 500);
     };
 
     return (
@@ -113,42 +129,78 @@ function Comments({
                             <p className="caption">{post.caption}</p>
                         </div>
                         <div className="comments">
-                            {filteredComments?.map((comment) => (
-                                <div
-                                    className="user-comments"
-                                    key={comment._id}
-                                >
+                            {filteredComments?.map((comment) => {
+                                return (
                                     <div
-                                        className="avatar-name"
-                                        onClick={() => {
-                                            navigate(
-                                                `/profile/${comment.user._id}`
-                                            );
-                                            setOpenComments(false);
-                                        }}
+                                        className={
+                                            comment.user._id === feedData?._id
+                                                ? "my-comment"
+                                                : "user-comments"
+                                        }
+                                        key={comment._id}
                                     >
-                                        <Avatar
-                                            src={comment?.user?.avatar?.url}
-                                        />
-                                        <h3 className="name">
-                                            {comment?.user?.name}
-                                        </h3>
+                                        <div className="name-content">
+                                            {" "}
+                                            <div
+                                                className="avatar-name"
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/profile/${comment.user._id}`
+                                                    );
+                                                    setOpenComments(false);
+                                                }}
+                                            >
+                                                <Avatar
+                                                    src={
+                                                        comment?.user?.avatar
+                                                            ?.url
+                                                    }
+                                                />
+                                                <h3 className="name">
+                                                    {comment?.user?.name}
+                                                </h3>
+                                            </div>
+                                            <p>{comment?.content}</p>
+                                        </div>
+
+                                        {comment.user._id === feedData?._id && (
+                                            <div
+                                                className="option-icon"
+                                                onClick={() =>
+                                                    setOpenCommentOption(
+                                                        !openCommentOption
+                                                    )
+                                                }
+                                            >
+                                                <HiOutlineDotsHorizontal />
+                                            </div>
+                                        )}
+                                        {openCommentOption && (
+                                            <CommentOption
+                                                handleDeleteComment={
+                                                    handleDeleteComment
+                                                }
+                                                closeCommentOption={() =>
+                                                    setOpenCommentOption(false)
+                                                }
+                                                comment={comment}
+                                            />
+                                        )}
                                     </div>
-                                    <p>{comment?.content}</p>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                     <div className="like-comment-time">
                         <div className="like-comment">
                             {post.isLiked ? (
                                 <AiFillHeart
-                                    className="icon liked"
+                                    className="like-icon liked-icon"
                                     onClick={handlePostLike}
                                 />
                             ) : (
                                 <AiOutlineHeart
-                                    className="icon"
+                                    className="like-icon"
                                     onClick={handlePostLike}
                                 />
                             )}

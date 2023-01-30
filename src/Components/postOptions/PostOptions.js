@@ -23,6 +23,7 @@ function PostOptions({ closePostOptions, post, darkMode }) {
                 userIdToFollow: post?.owner?._id,
             })
         );
+        closePostOptions(false);
     };
 
     const handleDeletePost = () => {
@@ -32,6 +33,7 @@ function PostOptions({ closePostOptions, post, darkMode }) {
             })
         );
         closePostOptions(false);
+        window.location.reload();
     };
 
     return (

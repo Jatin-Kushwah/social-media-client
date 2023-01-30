@@ -25,6 +25,19 @@ export const getComments = createAsyncThunk(
     }
 );
 
+export const deleteComment = createAsyncThunk(
+    "comment/deleteComment",
+    async (body) => {
+        try {
+            const response = await axiosClient.delete("/comment/delete", body);
+            console.log(response);
+            return response.result;
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    }
+);
+
 const commentSlice = createSlice({
     name: "commentSlice",
     initialState: {
@@ -37,6 +50,11 @@ const commentSlice = createSlice({
             })
             .addCase(createComment.fulfilled, (state, action) => {
                 state.comments.push(action.payload);
+            })
+            .addCase(deleteComment.fulfilled, (state, action) => {
+                state.comments = state.comments.filter(
+                    (comment) => comment._id !== action.payload
+                );
             });
     },
 });

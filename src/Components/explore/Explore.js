@@ -7,7 +7,8 @@ import Comments from "../comments/Comments";
 
 function Explore() {
     const dispatch = useDispatch();
-    const [openComments, setOpenComments] = useState({});
+    const [openComments, setOpenComments] = useState(false);
+    const [postId, setPostId] = useState("");
     const exploreData = useSelector(
         (state) => state.exploreReducer.exploreData
     );
@@ -21,7 +22,11 @@ function Explore() {
             <div className="explore-container">
                 <div className="posts">
                     {exploreData?.posts?.map((post) => (
-                        <div key={post._id} className="single-post">
+                        <div
+                            key={post._id}
+                            className="single-post"
+                            onClick={() => setPostId(post)}
+                        >
                             <img
                                 src={
                                     post?.image?.url
@@ -36,22 +41,22 @@ function Explore() {
                                     })
                                 }
                             />
-                            {openComments[post._id] && (
-                                <Comments
-                                    closeComments={() =>
-                                        setOpenComments({
-                                            ...openComments,
-                                            [post._id]: false,
-                                        })
-                                    }
-                                    post={post}
-                                    setOpenComments={setOpenComments}
-                                />
-                            )}
                         </div>
                     ))}
                 </div>
             </div>
+            {openComments[postId._id] && (
+                <Comments
+                    closeComments={() =>
+                        setOpenComments({
+                            ...openComments,
+                            [postId._id]: false,
+                        })
+                    }
+                    post={postId}
+                    setOpenComments={setOpenComments}
+                />
+            )}
         </div>
     );
 }

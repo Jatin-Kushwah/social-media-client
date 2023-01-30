@@ -105,12 +105,52 @@
                 .comments {
                     display: flex;
                     flex-direction: column;
-                    gap: 25px;
+
+                    .my-comment {
+                        display: flex;
+                        align-items: center;
+                        min-height: 65px;
+                        justify-content: space-between;
+
+                        .name-content {
+                            display: flex;
+                            gap: 6px;
+                            align-items: center;
+
+                            p {
+                                word-break: break-all;
+                            }
+                        }
+
+                        .option-icon {
+                            display: none;
+                        }
+                    }
+
+                    .my-comment:hover {
+                        .option-icon {
+                            display: block;
+                            color: #979797;
+                            align-self: flex-end;
+                            cursor: pointer;
+                            font-size: 20px;
+                        }
+                    }
 
                     .user-comments {
                         display: flex;
-                        gap: 6px;
                         align-items: center;
+                        min-height: 65px;
+
+                        .name-content {
+                            display: flex;
+                            gap: 6px;
+                            align-items: center;
+
+                            p {
+                                word-break: break-all;
+                            }
+                        }
                     }
                 }
             }
@@ -127,8 +167,9 @@
                     gap: 14px;
                     padding-bottom: 7px;
                     align-items: center;
+                    z-index: 99;
 
-                    .icon {
+                    .like-icon {
                         font-size: 28px;
                         animation: like 0.25s;
                         cursor: pointer;
@@ -138,8 +179,8 @@
                         color: #aaa;
                     }
 
-                    .liked {
-                        animation: like 0.25s;
+                    .liked-icon {
+                        animation: likeUnlike 0.25s;
                         fill: #ed4956;
                         stroke: #ed4956;
                     }
@@ -155,7 +196,7 @@
                         }
                     }
 
-                    @keyframes like {
+                    @keyframes likeUnlike {
                         0% {
                             transform: scale(1);
                         }
