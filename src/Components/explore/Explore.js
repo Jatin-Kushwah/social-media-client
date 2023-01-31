@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getExploreData } from "../../redux/slices/exploreSlice";
-import userImage from "../../assets/user.png";
 import "./Explore.scss";
 import Comments from "../comments/Comments";
 
@@ -31,14 +30,17 @@ function Explore() {
                             }}
                         >
                             <div className="single-post">
-                                <img
-                                    src={
-                                        post?.image?.url
-                                            ? post?.image?.url
-                                            : userImage
-                                    }
-                                    alt="post"
-                                />
+                                {!post?.isVideo ? (
+                                    <img src={post?.image?.url} alt="Post" />
+                                ) : (
+                                    <video
+                                        controls
+                                        autoPlay
+                                        height={"100%"}
+                                        width={"100%"}
+                                        src={post?.image?.url}
+                                    ></video>
+                                )}
                             </div>
                         </div>
                     ))}
