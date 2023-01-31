@@ -9,10 +9,19 @@ import { getUserProfile } from "../../redux/slices/postSlice";
 function CreatePost({ closeCreatePost, setOpenCreatePost, darkMode }) {
     const [postImg, setPostImg] = useState("");
     const [caption, setCaption] = useState("");
+    const [isVideo, setIsVideo] = useState(false);
     const dispatch = useDispatch();
     const myProfile = useSelector((state) => state.appConfigReducer.myProfile);
 
+    const format = ["webp", "mp4"];
+
     const handleImageChange = (event) => {
+        console.dir(event.target.value);
+        format.forEach((item) => {
+            if (event.target.value.includes(item)) {
+                setIsVideo(true);
+            }
+        });
         const file = event.target.files[0];
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
@@ -28,6 +37,7 @@ function CreatePost({ closeCreatePost, setOpenCreatePost, darkMode }) {
             const result = await axiosClient.post("/post", {
                 caption,
                 postImg,
+                isVideo,
             });
             dispatch(
                 getUserProfile({
@@ -93,18 +103,29 @@ function CreatePost({ closeCreatePost, setOpenCreatePost, darkMode }) {
                                         className="inputImg"
                                         id="inputImg"
                                         type="file"
-                                        accept="image/*"
+                                        accept="image/*, video/mp4, webp"
                                         onChange={handleImageChange}
                                     />
                                 </div>
                             </div>
                         ) : (
                             <div className="img-container">
-                                <img
-                                    className="post-img"
-                                    src={postImg}
-                                    alt="post-img"
-                                />
+                                {isVideo ? (
+                                    <>
+                                        <video
+                                            src={postImg}
+                                            className="post-img"
+                                        ></video>
+                                    </>
+                                ) : (
+                                    <>
+                                        <img
+                                            className="post-img"
+                                            src={postImg}
+                                            alt="post-img"
+                                        />
+                                    </>
+                                )}
                             </div>
                         )}
                     </div>

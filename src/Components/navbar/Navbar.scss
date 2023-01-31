@@ -9,6 +9,7 @@
         width: 244px;
         padding: 8px 12px;
         position: relative;
+        height: 100%;
 
         .nav-avatar {
             width: 24px;
@@ -25,16 +26,20 @@
         }
 
         .banner {
-            margin: 32px 12px 31px 12px;
+            margin: 32px 12px 35px 12px;
             cursor: pointer;
+
+            .insta-name-icon {
+                display: block;
+            }
+
+            .insta-icon {
+                display: none;
+            }
         }
 
         .banner:active {
             opacity: 0.55;
-        }
-
-        .nav-links-container {
-            height: 519px;
         }
 
         .nav-link {
@@ -76,6 +81,11 @@
         .home-nav {
             font-weight: 700;
         }
+
+        .more {
+            position: absolute;
+            bottom: 2.3%;
+        }
     }
 }
 
@@ -91,6 +101,34 @@
         svg {
             color: white;
             fill: white;
+        }
+    }
+}
+
+@media screen and (max-width: 1262px) {
+    .Navbar {
+        span {
+            display: none;
+        }
+
+        .nav-container {
+            width: auto;
+
+            .banner {
+                margin: 28px 12px 44px 12px;
+
+                .insta-name-icon {
+                    display: none;
+                }
+
+                .insta-icon {
+                    display: block;
+                }
+
+                .insta-icon:hover {
+                    transform: scale(1.06);
+                }
+            }
         }
     }
 }

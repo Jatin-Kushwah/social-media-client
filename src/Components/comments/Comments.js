@@ -82,7 +82,17 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                     <RxCross2 />
                 </div>
                 <div className="image-section">
-                    <img src={post?.image?.url} alt="Post" />
+                    {!post?.isVideo ? (
+                        <img src={post?.image?.url} alt="Post" />
+                    ) : (
+                        <video
+                            controls
+                            autoPlay
+                            height={"100%"}
+                            width={"100%"}
+                            src={post?.image?.url}
+                        ></video>
+                    )}
                 </div>
                 <div className="comment-section">
                     <div className="top">

@@ -116,10 +116,20 @@ function Profile() {
                                 }}
                             >
                                 <div className="single-image">
-                                    <img
-                                        src={post?.image?.url}
-                                        alt="user post"
-                                    />
+                                    {post?.isVideo ? (
+                                        <video
+                                            style={{ objectFit: "cover" }}
+                                            controls
+                                            height={"100%"}
+                                            width={"100%"}
+                                            src={post?.image?.url}
+                                        ></video>
+                                    ) : (
+                                        <img
+                                            src={post?.image?.url}
+                                            alt="user post"
+                                        />
+                                    )}
                                 </div>
                             </div>
                         ))}
