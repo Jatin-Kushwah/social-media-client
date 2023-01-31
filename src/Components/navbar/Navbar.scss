@@ -132,3 +132,34 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .Navbar {
+        position: fixed;
+        bottom: 0;
+        align-self: flex-end;
+        width: 100vw;
+        height: 6vh;
+        top: unset;
+        max-width: unset;
+        border-top: 1px solid var(--border-color);
+
+        .nav-container {
+            width: 100%;
+            padding: 4px 6px 8px 6px;
+
+            .banner,
+            .more {
+                display: none;
+            }
+
+            .nav-links-container {
+                ul {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-evenly;
+                }
+            }
+        }
+    }
+}
