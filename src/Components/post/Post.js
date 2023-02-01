@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Avatar from "../avatar/Avatar";
 import "./Post.scss";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
+import { GoUnmute } from "react-icons/go";
+import { IoVolumeMuteSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { likeAndUnlikePost } from "../../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +16,18 @@ function Post({ post }) {
     const navigate = useNavigate();
     const [openComments, setOpenComments] = useState(false);
     const [openPostOptions, setOpenPostOptions] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
+    const videoRef = useRef(null);
+
+    const handlePlayPause = () => {
+        if (isPlaying) {
+            videoRef.current.pause();
+        } else {
+            videoRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
 
     const handlePostLikes = () => {
         dispatch(
@@ -21,6 +35,11 @@ function Post({ post }) {
                 postId: post._id,
             })
         );
+    };
+
+    const handleMuteUnmute = () => {
+        videoRef.current.muted = !isMuted;
+        setIsMuted(!isMuted);
     };
 
     return (
@@ -53,12 +72,22 @@ function Post({ post }) {
                     <img src={post?.image?.url} alt="Post" />
                 ) : (
                     <video
-                        controls
-                        autoPlay
+                        ref={videoRef}
+                        loop
+                        onPlay={() => setIsPlaying(true)}
+                        onPause={() => setIsPlaying(false)}
+                        controls={false}
+                        onClick={handlePlayPause}
+                        style={{ objectFit: "cover" }}
                         height={"100%"}
                         width={"100%"}
                         src={post?.image?.url}
                     ></video>
+                )}
+                {post?.isVideo && (
+                    <button onClick={handleMuteUnmute}>
+                        {isMuted ? <IoVolumeMuteSharp /> : <GoUnmute />}
+                    </button>
                 )}
             </div>
             <div className="footer">

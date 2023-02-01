@@ -41,6 +41,20 @@
         height: 470px;
         min-height: 470px;
         max-height: 586px;
+        position: relative;
+
+        button {
+            position: absolute;
+            bottom: 4%;
+            right: 4%;
+            background-color: #262626;
+            display: flex;
+            color: white;
+            border-radius: 50%;
+            font-size: 16px;
+            padding: 6px;
+            cursor: pointer;
+        }
 
         img {
             width: 100%;

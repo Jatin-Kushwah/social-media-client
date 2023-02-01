@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Profile.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import userImage from "../../assets/user.png";
@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "../../redux/slices/postSlice";
 import { followAndUnfollowUser } from "../../redux/slices/feedSlice";
 import Comments from "../comments/Comments";
+import { GoUnmute } from "react-icons/go";
+import { IoVolumeMuteSharp } from "react-icons/io5";
+
 function Profile() {
     const navigate = useNavigate();
     const params = useParams();
@@ -17,6 +20,9 @@ function Profile() {
     const [isFollowing, setIsFollowing] = useState();
     const [openComments, setOpenComments] = useState(false);
     const [postId, setPostId] = useState("");
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
+    const videoRef = useRef(null);
     const userImg = userProfile?.avatar?.url;
 
     useEffect(() => {
@@ -38,6 +44,20 @@ function Profile() {
                 userIdToFollow: params.userId,
             })
         );
+    };
+
+    const handlePlayPause = () => {
+        if (isPlaying) {
+            videoRef.current.pause();
+        } else {
+            videoRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
+
+    const handleMuteUnmute = () => {
+        videoRef.current.muted = !isMuted;
+        setIsMuted(!isMuted);
     };
 
     return (
@@ -118,17 +138,30 @@ function Profile() {
                                 <div className="single-image">
                                     {post?.isVideo ? (
                                         <video
+                                            ref={videoRef}
+                                            onPlay={() => setIsPlaying(true)}
+                                            onPause={() => setIsPlaying(false)}
+                                            controls={false}
+                                            onClick={handlePlayPause}
                                             style={{ objectFit: "cover" }}
-                                            controls
                                             height={"100%"}
                                             width={"100%"}
                                             src={post?.image?.url}
-                                        ></video>
+                                        />
                                     ) : (
                                         <img
                                             src={post?.image?.url}
                                             alt="user post"
                                         />
+                                    )}
+                                    {post?.isVideo && (
+                                        <button onClick={handleMuteUnmute}>
+                                            {isMuted ? (
+                                                <IoVolumeMuteSharp />
+                                            ) : (
+                                                <GoUnmute />
+                                            )}
+                                        </button>
                                     )}
                                 </div>
                             </div>

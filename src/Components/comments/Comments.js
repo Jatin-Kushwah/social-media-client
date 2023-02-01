@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Avatar from "../avatar/Avatar";
 import { BsThreeDots } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
@@ -8,6 +8,8 @@ import { likeAndUnlikePost } from "../../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
+import { GoUnmute } from "react-icons/go";
+import { IoVolumeMuteSharp } from "react-icons/io5";
 import {
     createComment,
     deleteComment,
@@ -22,6 +24,9 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
     const [content, setContent] = useState("");
     const [openPostOptions, setOpenPostOptions] = useState(false);
     const [openCommentOption, setOpenCommentOption] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
+    const videoRef = useRef(null);
 
     const comments = useSelector((state) => state.commentReducer.comments);
     const feedData = useSelector((state) => state.feedDataReducer.feedData);
@@ -74,6 +79,20 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
         }, 500);
     };
 
+    const handlePlayPause = () => {
+        if (isPlaying) {
+            videoRef.current.pause();
+        } else {
+            videoRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
+
+    const handleMuteUnmute = () => {
+        videoRef.current.muted = !isMuted;
+        setIsMuted(!isMuted);
+    };
+
     return (
         <div className={darkMode ? "Comments dark-mode" : "Comments"}>
             <div className="blank" onClick={closeComments}></div>
@@ -86,12 +105,21 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                         <img src={post?.image?.url} alt="Post" />
                     ) : (
                         <video
-                            controls
-                            autoPlay
+                            ref={videoRef}
+                            onPlay={() => setIsPlaying(true)}
+                            onPause={() => setIsPlaying(false)}
+                            controls={false}
+                            onClick={handlePlayPause}
+                            style={{ objectFit: "contain" }}
                             height={"100%"}
                             width={"100%"}
                             src={post?.image?.url}
                         ></video>
+                    )}
+                    {post?.isVideo && (
+                        <button onClick={handleMuteUnmute}>
+                            {isMuted ? <IoVolumeMuteSharp /> : <GoUnmute />}
+                        </button>
                     )}
                 </div>
                 <div className="comment-section">
@@ -203,17 +231,13 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                     </div>
                     <div className="like-comment-time">
                         <div className="like-comment">
-                            {post.isLiked ? (
-                                <AiFillHeart
-                                    className="like-icon liked-icon"
-                                    onClick={handlePostLike}
-                                />
-                            ) : (
-                                <AiOutlineHeart
-                                    className="like-icon"
-                                    onClick={handlePostLike}
-                                />
-                            )}
+                            <div onClick={handlePostLike}>
+                                {post.isLiked ? (
+                                    <AiFillHeart className="like-icon liked-icon" />
+                                ) : (
+                                    <AiOutlineHeart className="like-icon" />
+                                )}
+                            </div>
                             <label htmlFor="content">
                                 <div className="comment">
                                     <svg
