@@ -109,6 +109,7 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                             onPlay={() => setIsPlaying(true)}
                             onPause={() => setIsPlaying(false)}
                             controls={false}
+                            autoPlay
                             onClick={handlePlayPause}
                             style={{ objectFit: "contain" }}
                             height={"100%"}

@@ -139,6 +139,7 @@
         position: fixed;
         bottom: 0;
         align-self: flex-end;
+        z-index: 99;
         width: 100vw;
         height: 6vh;
         top: unset;
@@ -147,7 +148,7 @@
 
         .nav-container {
             width: 100%;
-            padding: 4px 6px 8px 6px;
+            padding: 0px 6px 8px 6px;
 
             .banner,
             .more {
