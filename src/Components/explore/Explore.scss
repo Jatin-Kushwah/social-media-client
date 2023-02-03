@@ -55,3 +55,23 @@
         }
     }
 }
+
+@media screen and (max-width: 480px) {
+    .Explore {
+        padding: 0px;
+        height: 95vh;
+
+        .explore-container {
+            .posts {
+                gap: 2px;
+
+                .post {
+                    .single-post {
+                        width: auto;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

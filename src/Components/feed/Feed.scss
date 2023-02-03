@@ -74,7 +74,7 @@
             }
 
             .suggestions-container {
-                height: 279px;
+                height: 270px;
                 overflow-y: auto;
 
                 .suggestions {
@@ -109,6 +109,7 @@
         .container {
             flex-direction: column;
             justify-content: unset;
+            height: 96vh;
 
             .banner {
                 padding: 9px 16px;
