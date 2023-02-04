@@ -25,9 +25,20 @@
         z-index: 99;
         border-radius: 12px;
 
-        .head {
-            font-weight: 500;
-            padding: 23px;
+        .top {
+            display: flex;
+            align-items: center;
+
+            .back {
+                font-size: 23px;
+                padding: 7px 0 0 6px;
+                cursor: pointer;
+            }
+
+            .head {
+                font-weight: 500;
+                padding: 23px;
+            }
         }
 
         .input-field {
@@ -114,6 +125,18 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .SearchUser {
+        top: unset;
+        bottom: 0;
+
+        .search-container {
+            width: 100vw;
+            border-radius: 0;
         }
     }
 }

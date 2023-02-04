@@ -147,3 +147,32 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .CreatePost {
+        bottom: 0;
+        top: unset;
+
+        .close-icon {
+            left: 1%;
+            top: 1%;
+            color: black;
+            z-index: 100;
+        }
+
+        .create-container {
+            width: 100vw;
+            height: 100vh;
+            border-radius: 0;
+
+            .create-box {
+                display: flex;
+                flex-direction: column-reverse;
+
+                .create-left-part {
+                    height: 100%;
+                }
+            }
+        }
+    }
+}

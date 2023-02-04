@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userImage from "../../assets/user.png";
 import { axiosClient } from "../../Utils/axiosClient";
+import { BiArrowBack } from "react-icons/bi";
 import "./SearchUser.scss";
 
 const SearchUser = ({ closeSearchBox, setOpenSearchBox, darkMode }) => {
@@ -25,7 +26,12 @@ const SearchUser = ({ closeSearchBox, setOpenSearchBox, darkMode }) => {
         <div className={darkMode ? "SearchUser dark-mode" : "SearchUser"}>
             <div className="blank" onClick={closeSearchBox}></div>
             <div className="search-container">
-                <h2 className="head">Search</h2>
+                <div className="top">
+                    <div className="back" onClick={closeSearchBox}>
+                        <BiArrowBack />
+                    </div>
+                    <h2 className="head">Search</h2>
+                </div>
                 <div className="input-field">
                     <form onSubmit={handleSubmit}>
                         <input

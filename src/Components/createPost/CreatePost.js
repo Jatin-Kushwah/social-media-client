@@ -60,7 +60,7 @@ function CreatePost({ closeCreatePost, setOpenCreatePost, darkMode }) {
             </div>
             <div className="create-container">
                 <div className="top-bar">
-                    <span>Create new post</span>
+                    <div>Create new post</div>
                     <h3 onClick={hanldePostSubmit}>Share</h3>
                 </div>
                 <div className="create-box">
