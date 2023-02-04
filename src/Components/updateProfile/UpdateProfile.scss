@@ -187,3 +187,51 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .UpdateProfile {
+        padding: unset;
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            border: none;
+
+            .left-part {
+                border-bottom: 1px solid var(--border-color);
+                border-left: none;
+
+                h3 {
+                    font-size: 16px;
+                }
+            }
+
+            .right-part {
+                width: 100vw;
+
+                .right-container {
+                    width: 100%;
+                    padding: 22px 18px;
+
+                    .avatar-name {
+                        gap: 20px;
+                    }
+
+                    .form {
+                        .name-input {
+                            flex-direction: column;
+                            gap: 8px;
+                            align-items: unset;
+                        }
+
+                        .bio-input {
+                            flex-direction: column;
+                            gap: 8px;
+                            align-items: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

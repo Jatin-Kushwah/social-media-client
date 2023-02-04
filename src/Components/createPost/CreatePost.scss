@@ -170,7 +170,18 @@
                 flex-direction: column-reverse;
 
                 .create-left-part {
-                    height: 100%;
+                    .img-container {
+                        height: 100%;
+                        width: 100%;
+
+                        .post-img {
+                            height: 90%;
+                        }
+                    }
+
+                    .add-post {
+                        justify-content: flex-start;
+                    }
                 }
             }
         }
