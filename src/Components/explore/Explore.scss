@@ -56,14 +56,13 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1280px) {
     .Explore {
-        padding: 0px;
-        height: 95vh;
+        padding: 24px 30px;
 
         .explore-container {
             .posts {
-                gap: 2px;
+                gap: 28px;
 
                 .post {
                     .single-post {
@@ -71,6 +70,19 @@
                         height: 100%;
                     }
                 }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Explore {
+        padding: 0px;
+        height: 95vh;
+
+        .explore-container {
+            .posts {
+                gap: 2px;
             }
         }
     }

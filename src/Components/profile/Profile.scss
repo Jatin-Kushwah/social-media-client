@@ -22,6 +22,10 @@
                 border-radius: 4px;
                 padding: 30px 91px;
 
+                .user-bio {
+                    display: none;
+                }
+
                 .user-profile {
                     display: flex;
                     gap: 101px;
@@ -118,6 +122,10 @@
             }
         }
 
+        .middle-part {
+            display: none;
+        }
+
         .lower-part {
             padding-top: 22px;
 
@@ -167,6 +175,121 @@
 
                 .single-image:hover:after {
                     opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1010px) {
+    .Profile {
+        .profile-container {
+            .lower-part {
+                padding: 16px;
+
+                .user-images {
+                    gap: 18px;
+
+                    .image {
+                        .single-image {
+                            width: auto;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 735px) {
+    .Profile {
+        .profile-container {
+            gap: 10px;
+
+            .upper-part {
+                padding: unset;
+
+                .profile-card {
+                    padding: 30px 18px;
+
+                    .user-bio {
+                        display: block;
+                        margin-top: 14px;
+                        font-size: 14px;
+                    }
+
+                    .user-profile {
+                        gap: 26px;
+                        align-items: center;
+
+                        .user-img {
+                            width: 77px;
+                            height: 77px;
+                        }
+
+                        .user-details {
+                            .user-name {
+                                flex-direction: column;
+                                gap: 15px;
+
+                                .name {
+                                    align-self: baseline;
+                                }
+
+                                .edit-profile {
+                                    padding: 9px 70px;
+                                    letter-spacing: 0.5px;
+                                    border-radius: 9px;
+                                }
+                            }
+
+                            .follower-info,
+                            .bio {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .middle-part {
+                display: block;
+
+                .follower-info {
+                    display: flex;
+                    justify-content: space-around;
+
+                    .posts,
+                    .followers,
+                    .followings {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        p {
+                            font-size: 14px;
+                            letter-spacing: 0.1px;
+                            color: #6e6e6e;
+                        }
+                    }
+                }
+            }
+
+            .lower-part {
+                padding: 22px 0;
+                border-top: 1px solid var(--border-color);
+                height: 96vh;
+
+                .user-images {
+                    gap: 2px;
+
+                    .image {
+                        .single-image {
+                            width: auto;
+                            height: 100%;
+                        }
+                    }
                 }
             }
         }

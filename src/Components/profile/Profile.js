@@ -25,6 +25,8 @@ function Profile() {
     const videoRef = useRef(null);
     const userImg = userProfile?.avatar?.url;
 
+    console.log(userProfile);
+
     useEffect(() => {
         dispatch(
             getUserProfile({
@@ -121,6 +123,23 @@ function Profile() {
                                 </div>
                                 <p className="bio">{userProfile?.bio}</p>
                             </div>
+                        </div>
+                        <div className="user-bio">{userProfile?.bio}</div>
+                    </div>
+                </div>
+                <div className="middle-part">
+                    <div className="follower-info">
+                        <div className="posts">
+                            <h3> {userProfile?.posts?.length}</h3>
+                            <p>posts</p>
+                        </div>
+                        <div className="followers">
+                            <h3>{userProfile?.followers?.length}</h3>
+                            <p>followers</p>
+                        </div>
+                        <div className="followings">
+                            <h3>{userProfile?.followings?.length}</h3>
+                            <p>following</p>
                         </div>
                     </div>
                 </div>
