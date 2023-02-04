@@ -74,6 +74,11 @@
                 justify-content: space-between;
                 border-bottom: 1px solid var(--border-color);
 
+                .back,
+                .comment-heading {
+                    display: none;
+                }
+
                 .left {
                     display: flex;
                     align-items: center;
@@ -234,12 +239,16 @@
 
             .comment-input {
                 height: 50px;
+                display: flex;
+                align-items: center;
+                padding-left: 15px;
 
                 form {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     height: 100%;
+                    width: 100%;
                     padding-inline: 18px;
 
                     input {
@@ -280,6 +289,69 @@
                 input {
                     background-color: black;
                     color: white;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Comments {
+        top: unset;
+        bottom: 0;
+        overflow: hidden;
+
+        .comment-container {
+            width: 100vw;
+            height: 100vh;
+            z-index: 99;
+
+            .close-icon {
+                display: none;
+            }
+
+            .image-section {
+                display: none;
+            }
+
+            .comment-section {
+                width: 100vw;
+
+                .top {
+                    justify-content: center;
+                    height: unset;
+                    padding: 11px;
+
+                    .back {
+                        display: block;
+                        font-weight: 500;
+                        position: absolute;
+                        font-size: 20px;
+                        left: 1%;
+                        top: 1.4%;
+                        cursor: pointer;
+                    }
+
+                    .comment-heading {
+                        display: block;
+                        font-weight: 500;
+                    }
+
+                    .left {
+                        display: none;
+                    }
+
+                    .right {
+                        display: none;
+                    }
+                }
+
+                .comment-box {
+                    height: 90%;
+                }
+
+                .like-comment-time {
+                    display: none;
                 }
             }
         }

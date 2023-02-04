@@ -8,6 +8,7 @@ import { likeAndUnlikePost } from "../../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
+import { BiArrowBack } from "react-icons/bi";
 import { GoUnmute } from "react-icons/go";
 import { IoVolumeMuteSharp } from "react-icons/io5";
 import {
@@ -30,6 +31,8 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
 
     const comments = useSelector((state) => state.commentReducer.comments);
     const feedData = useSelector((state) => state.feedDataReducer.feedData);
+
+    console.log(feedData);
 
     const filteredComments = comments.filter(
         (comment) => comment?.post === post._id
@@ -109,7 +112,6 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                             onPlay={() => setIsPlaying(true)}
                             onPause={() => setIsPlaying(false)}
                             controls={false}
-                            autoPlay
                             onClick={handlePlayPause}
                             style={{ objectFit: "contain" }}
                             height={"100%"}
@@ -125,6 +127,10 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                 </div>
                 <div className="comment-section">
                     <div className="top">
+                        <div className="back" onClick={closeComments}>
+                            <BiArrowBack />
+                        </div>
+                        <div className="comment-heading">Comments</div>
                         <div
                             className="left"
                             onClick={() =>
@@ -268,6 +274,7 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                     </div>
 
                     <div className="comment-input">
+                        <Avatar src={feedData?.avatar?.url} />
                         <form onSubmit={handleSubmitComment}>
                             <input
                                 type="text"
