@@ -322,7 +322,7 @@
                 .top {
                     justify-content: center;
                     height: unset;
-                    padding: 11px;
+                    padding: 24px;
 
                     .back {
                         display: block;
@@ -330,7 +330,7 @@
                         position: absolute;
                         font-size: 20px;
                         left: 1%;
-                        top: 1.4%;
+                        top: 3.2%;
                         cursor: pointer;
                     }
 
@@ -349,11 +349,15 @@
                 }
 
                 .comment-box {
-                    height: 90%;
+                    height: 100%;
                 }
 
                 .like-comment-time {
                     display: none;
+                }
+
+                .comment-input {
+                    height: 60px;
                 }
             }
         }

@@ -110,6 +110,16 @@
     }
 }
 
+@media screen and (max-width: 1400px) {
+    .Navbar {
+        .nav-container {
+            .more-nav {
+                display: none;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 1262px) {
     .Navbar {
         span {
@@ -159,7 +169,7 @@
             padding: 0px 6px 8px 6px;
 
             .more-nav {
-                display: block;
+                display: flex;
             }
 
             .banner,
