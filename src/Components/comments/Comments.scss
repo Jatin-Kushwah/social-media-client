@@ -297,6 +297,7 @@
 
 @media screen and (max-width: 768px) {
     .Comments {
+        height: 100vh;
         top: unset;
         bottom: 0;
         overflow: hidden;
@@ -317,7 +318,7 @@
 
             .comment-section {
                 width: 100vw;
-                height: 100vh;
+                height: 100%;
 
                 .top {
                     justify-content: center;
