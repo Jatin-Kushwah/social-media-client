@@ -186,6 +186,15 @@
             }
         }
     }
+    @media screen and (max-width: 768px) {
+        .UpdateProfile {
+            .profile-container {
+                .left-part {
+                    border-left: none;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -196,6 +205,7 @@
             display: flex;
             flex-direction: column;
             border: none;
+            height: 100vh;
 
             .left-part {
                 border-bottom: 1px solid var(--border-color);

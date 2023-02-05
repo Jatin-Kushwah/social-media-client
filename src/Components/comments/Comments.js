@@ -100,6 +100,12 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
         <div className={darkMode ? "Comments dark-mode" : "Comments"}>
             <div className="blank" onClick={closeComments}></div>
             <div className="comment-container">
+                <div className="top-head">
+                    <div className="back" onClick={closeComments}>
+                        <BiArrowBack />
+                    </div>
+                    <div className="comment-heading">Comments</div>
+                </div>
                 <div className="close-icon" onClick={closeComments}>
                     <RxCross2 />
                 </div>
@@ -127,10 +133,6 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                 </div>
                 <div className="comment-section">
                     <div className="top">
-                        <div className="back" onClick={closeComments}>
-                            <BiArrowBack />
-                        </div>
-                        <div className="comment-heading">Comments</div>
                         <div
                             className="left"
                             onClick={() =>

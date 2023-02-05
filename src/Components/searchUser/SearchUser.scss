@@ -137,6 +137,12 @@
         .search-container {
             width: 100vw;
             border-radius: 0;
+
+            .search-result {
+                .user-profile {
+                    margin-bottom: 18px;
+                }
+            }
         }
     }
 }

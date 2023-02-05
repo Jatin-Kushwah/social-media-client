@@ -155,7 +155,7 @@
 
         .close-icon {
             left: 1%;
-            top: 1%;
+            top: 2%;
             color: black;
             z-index: 100;
         }
@@ -165,14 +165,23 @@
             height: 100vh;
             border-radius: 0;
 
+            .top-bar {
+                padding: 20px;
+            }
+
             .create-box {
                 display: flex;
                 flex-direction: column-reverse;
                 height: 100vh;
                 justify-content: space-between;
 
+                .create-right-part {
+                    flex: 1;
+                }
+
                 .create-left-part {
                     height: 380px;
+                    flex: 1.5;
 
                     .img-container {
                         height: 380px;
