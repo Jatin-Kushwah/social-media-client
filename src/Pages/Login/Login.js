@@ -35,6 +35,7 @@ function Login() {
                         type="email"
                         className="email"
                         id="email"
+                        placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
@@ -43,14 +44,22 @@ function Login() {
                         type="password"
                         className="password"
                         id="password"
+                        placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <input type="submit" className="submit" />
+                    <input type="submit" className="submit" value="Log in" />
                 </form>
 
+                <div className="lines-text">
+                    <span>OR</span>
+                </div>
+
                 <p className="bottom-heading">
-                    Don't have an account? <Link to="/signup">Sign Up</Link>
+                    Don't have an account?
+                    <span>
+                        <Link to="/signup">Sign Up</Link>
+                    </span>
                 </p>
             </div>
         </div>

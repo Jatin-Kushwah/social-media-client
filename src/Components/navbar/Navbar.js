@@ -309,6 +309,85 @@ function Navbar({ darkMode, toggleDarkMode }) {
                             </div>
                             <span>Profile</span>
                         </li>
+
+                        <li
+                            className={`nav-link more-nav ${
+                                isDropdownOpen ? "open" : ""
+                            }`}
+                            onClick={handleMoreClick}
+                        >
+                            {isDropdownOpen ? (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-label="Settings"
+                                    className="_ab6-"
+                                    color="#262626"
+                                    fill="#262626"
+                                    height="24"
+                                    role="img"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                >
+                                    <path d="M3.5 6.5h17a1.5 1.5 0 0 0 0-3h-17a1.5 1.5 0 0 0 0 3Zm17 4h-17a1.5 1.5 0 0 0 0 3h17a1.5 1.5 0 0 0 0-3Zm0 7h-17a1.5 1.5 0 0 0 0 3h17a1.5 1.5 0 0 0 0-3Z" />
+                                </svg>
+                            ) : (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-label="Settings"
+                                    className="_ab6-"
+                                    color="#262626"
+                                    fill="#262626"
+                                    height="24"
+                                    role="img"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                >
+                                    <line
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        x1="3"
+                                        x2="21"
+                                        y1="4"
+                                        y2="4"
+                                    />
+                                    <line
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        x1="3"
+                                        x2="21"
+                                        y1="12"
+                                        y2="12"
+                                    />
+                                    <line
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        x1="3"
+                                        x2="21"
+                                        y1="20"
+                                        y2="20"
+                                    />
+                                </svg>
+                            )}
+                            <span>More</span>
+                        </li>
+                        {isDropdownOpen && (
+                            <DropDown
+                                isDropdownOpen={isDropdownOpen}
+                                setIsDropdownOpen={setIsDropdownOpen}
+                                dropDownClose={() => setIsDropdownOpen(false)}
+                                toggleDarkMode={toggleDarkMode}
+                                darkMode={darkMode}
+                            />
+                        )}
                     </ul>
                 </div>
 
@@ -380,15 +459,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
                         )}
                         <span>More</span>
                     </div>
-                    {isDropdownOpen && (
-                        <DropDown
-                            isDropdownOpen={isDropdownOpen}
-                            setIsDropdownOpen={setIsDropdownOpen}
-                            dropDownClose={() => setIsDropdownOpen(false)}
-                            toggleDarkMode={toggleDarkMode}
-                            darkMode={darkMode}
-                        />
-                    )}
                 </div>
             </div>
         </div>

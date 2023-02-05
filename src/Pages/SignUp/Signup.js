@@ -32,6 +32,7 @@ function Signup() {
                         type="name"
                         className="name"
                         id="name"
+                        placeholder="Name"
                         onChange={(e) => setName(e.target.value)}
                     />
 
@@ -40,6 +41,7 @@ function Signup() {
                         type="email"
                         className="email"
                         id="email"
+                        placeholder="Email"
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
@@ -48,14 +50,22 @@ function Signup() {
                         type="password"
                         className="password"
                         id="password"
+                        placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <input type="submit" className="submit" />
+                    <input type="submit" className="submit" value="Sign up" />
                 </form>
 
+                <div className="lines-text">
+                    <span>OR</span>
+                </div>
+
                 <p className="bottom-heading">
-                    Already have an account? <Link to="/login">Log In</Link>
+                    Already have an account?
+                    <span>
+                        <Link to="/login">Log In</Link>
+                    </span>
                 </p>
             </div>
         </div>

@@ -49,3 +49,22 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .Dropdown {
+        bottom: 120%;
+        right: 9%;
+        left: unset;
+
+        .dropdown-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blank {
+            bottom: 0;
+            right: -18%;
+            left: unset;
+        }
+    }
+}

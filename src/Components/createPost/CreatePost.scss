@@ -168,10 +168,14 @@
             .create-box {
                 display: flex;
                 flex-direction: column-reverse;
+                height: 100vh;
+                justify-content: space-between;
 
                 .create-left-part {
+                    height: 380px;
+
                     .img-container {
-                        height: 100%;
+                        height: 380px;
                         width: 100%;
                     }
 

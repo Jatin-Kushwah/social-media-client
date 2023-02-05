@@ -112,6 +112,11 @@
                                 gap: 6px;
                                 align-items: center;
                             }
+
+                            .followers,
+                            .followings {
+                                cursor: pointer;
+                            }
                         }
 
                         .bio {

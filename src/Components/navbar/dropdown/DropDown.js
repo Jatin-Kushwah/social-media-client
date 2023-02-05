@@ -23,7 +23,7 @@ function DropDown({ toggleDarkMode, darkMode, dropDownClose }) {
     return (
         <div className={darkMode ? "Dropdown dark-mode" : "Dropdown"}>
             <div className="blank" onClick={dropDownClose}></div>
-            <ul>
+            <ul className="dropdown-list">
                 <li onClick={() => navigate("/updateProfile")}>
                     Settings
                     <svg
