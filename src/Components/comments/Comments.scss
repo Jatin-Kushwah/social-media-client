@@ -302,13 +302,14 @@
         .comment-container {
             width: 100vw;
             position: fixed;
-            min-height: 96%;
+            min-height: 100%;
+            height: 100vh;
             z-index: 99;
             display: flex;
             flex-direction: column;
 
             .top-head {
-                height: 100px;
+                height: 102px;
                 padding-bottom: 12px;
                 position: relative;
                 align-items: flex-end;
