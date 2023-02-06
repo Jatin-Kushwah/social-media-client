@@ -29,8 +29,6 @@ function Profile() {
     const videoRef = useRef(null);
     const userImg = userProfile?.avatar?.url;
 
-    console.log(userProfile);
-
     useEffect(() => {
         dispatch(
             getUserProfile({
