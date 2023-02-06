@@ -309,18 +309,20 @@
             flex-direction: column;
 
             .top-head {
+                height: 100px;
+                padding-bottom: 12px;
+                position: relative;
+                align-items: flex-end;
                 display: flex;
                 justify-content: center;
-                padding: 20px;
                 border-bottom: 1px solid var(--border-color);
 
                 .back {
-                    display: block;
+                    display: flex;
                     font-weight: 500;
                     position: absolute;
                     font-size: 20px;
                     left: 1.5%;
-                    top: 2.6%;
                     cursor: pointer;
                 }
 
