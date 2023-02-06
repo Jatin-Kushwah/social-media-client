@@ -105,7 +105,19 @@ function Comments({ closeComments, post, darkMode, setOpenComments }) {
                         <BiArrowBack />
                     </div>
                     <div className="comment-heading">Comments</div>
+                    <div
+                        className="option"
+                        onClick={() => setOpenPostOptions(!openPostOptions)}
+                    >
+                        <BsThreeDots />
+                    </div>
                 </div>
+                {openPostOptions && (
+                    <PostOptions
+                        closePostOptions={() => setOpenPostOptions(false)}
+                        post={post}
+                    />
+                )}
                 <div className="close-icon" onClick={closeComments}>
                     <RxCross2 />
                 </div>

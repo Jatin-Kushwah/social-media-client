@@ -330,6 +330,12 @@
                     display: block;
                     font-weight: 500;
                 }
+
+                .option {
+                    position: absolute;
+                    right: 2%;
+                    display: flex;
+                }
             }
 
             .close-icon {
