@@ -8,7 +8,7 @@ Here is the Output of this Instagram Clone.
 
 Demo Video:
 
-https://youtu.be/lCN3aDZxwvI
+https://user-images.githubusercontent.com/122866611/218456497-05954b8e-77be-4354-a918-f66a9daa9796.mp4
 
 Screenshots:
 
