@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import dummyImg from "../../assets/user.png";
 import { RxCross2 } from "react-icons/rx";
 import "./FollowerBox.scss";
 
@@ -27,7 +28,11 @@ function FollowerBox({ darkMode, closeFollowers, setOpenFollowers }) {
                         >
                             <div className="avatar">
                                 <img
-                                    src={follower?.avatar?.url}
+                                    src={
+                                        follower?.avatar?.url
+                                            ? follower?.avatar?.url
+                                            : dummyImg
+                                    }
                                     alt="user avatar"
                                 />
                             </div>
