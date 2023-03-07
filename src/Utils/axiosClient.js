@@ -52,9 +52,10 @@ axiosClient.interceptors.response.use(
 
             const response = await axios
                 .create({
+                    baseURL,
                     withCredentials: true,
                 })
-                .get(`${baseURL}/auth/refresh`);
+                .get(`/auth/refresh`);
 
             if (response.data.status === "ok") {
                 setItem(KEY_ACCESS_TOKEN, response.data.result.accessToken);
@@ -62,7 +63,8 @@ axiosClient.interceptors.response.use(
                     "Authorization"
                 ] = `Bearer ${response.data.result.accessToken}`;
 
-                return axios(originalRequest);
+                const refreshedResponse = await axios(originalRequest);
+                return refreshedResponse.data;
             } else {
                 window.location.replace("/login", "_self");
                 removeItem(KEY_ACCESS_TOKEN);
